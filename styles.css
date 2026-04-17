@@ -1057,3 +1057,439 @@ button { font: inherit; border: 0; background: none; color: inherit; }
   }
   .offset-down { transform: none; }
 }
+
+.site-toast {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(28, 27, 27, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 200;
+}
+
+.site-toast.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.site-toast-card {
+  width: min(420px, calc(100vw - 32px));
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 24px 70px rgba(28, 27, 27, 0.14);
+}
+
+.site-toast-card strong {
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.site-toast-card p {
+  margin: 0 0 18px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.site-toast-card button {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+
+.order-map-section {
+  padding-top: 32px;
+  padding-bottom: 96px;
+}
+
+.order-map-intro {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 28px;
+}
+
+.order-map-intro p {
+  margin: 0 0 14px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.order-map-intro h2 {
+  margin: 0 0 12px;
+  font-size: clamp(52px, 6vw, 88px);
+  letter-spacing: -0.06em;
+}
+
+.order-map-intro span {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.compact-map {
+  max-width: 980px;
+  margin: 0 auto;
+  min-height: 360px;
+}
+
+.hero-toggle {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.hero-gallery-dots {
+  gap: 12px;
+}
+
+.hero-toggle-btn {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: 999px;
+  background: rgba(229, 226, 225, 1);
+  cursor: pointer;
+}
+
+.hero-toggle-btn.active {
+  width: 36px;
+  background: var(--primary);
+}
+
+.review-btn {
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.review-btn:hover {
+  background: var(--primary-container);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.review-btn:hover .review-label {
+  visibility: hidden;
+  position: relative;
+}
+
+.review-btn:hover .review-label::after {
+  content: 'Ready for takeoff!';
+  visibility: visible;
+  position: absolute;
+  inset: 0 auto auto 0;
+  white-space: nowrap;
+}
+
+.social-order-links {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.social-order-links a {
+  display: block;
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: rgba(229, 226, 225, 0.8);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#box-progress-fill {
+  width: 50%;
+  height: 100%;
+  background: var(--primary-container);
+  border-radius: 999px;
+}
+
+.hero-slide-copy,
+.hero-slide-art {
+  transition: transform 0.18s ease, opacity 0.18s ease;
+  will-change: transform, opacity;
+}
+
+.hero-slide-copy.slide-out-left {
+  transform: translateX(-26px);
+  opacity: 0;
+}
+
+.hero-slide-art.slide-out-right {
+  transform: translateX(26px);
+  opacity: 0;
+}
+
+.hero-slide-copy.slide-in-right {
+  transform: translateX(22px);
+  opacity: 0;
+  animation: heroCopyIn 0.26s ease forwards;
+}
+
+.hero-slide-art.slide-in-left {
+  transform: translateX(-22px);
+  opacity: 0;
+  animation: heroArtIn 0.26s ease forwards;
+}
+
+@keyframes heroCopyIn {
+  from {
+    transform: translateX(22px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes heroArtIn {
+  from {
+    transform: translateX(-22px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.add-order-btn {
+  transition: transform 0.16s ease, background 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.add-order-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(28, 27, 27, 0.12);
+}
+
+.add-order-btn.added {
+  background: var(--primary);
+  color: #fff;
+}
+
+
+.review-btn {
+  gap: 10px;
+}
+
+.review-btn .review-label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.review-btn:hover .review-label {
+  visibility: visible;
+  position: static;
+}
+
+.review-btn:hover .review-label::after {
+  content: 'Ready for takeoff!';
+  position: static;
+  visibility: visible;
+  white-space: nowrap;
+}
+
+.review-btn:hover .material-symbols-outlined {
+  position: static;
+}
+
+.proto-center-map {
+  max-width: 900px;
+}
+
+.prototype-map-box {
+  position: relative;
+  max-width: 980px;
+  height: 330px;
+  margin: 0 auto;
+  background: rgba(246, 243, 242, 0.95);
+  border-radius: 34px;
+}
+
+.proto-map-pin {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.92);
+}
+
+.proto-blue {
+  left: 24%;
+  top: 36%;
+  background: var(--tertiary);
+}
+
+.proto-red {
+  left: 44%;
+  top: 30%;
+  background: var(--secondary);
+}
+
+.proto-gold {
+  left: 61%;
+  top: 58%;
+  background: var(--primary);
+}
+
+
+@media (max-width: 640px) {
+  .site-header {
+    background: rgba(252, 249, 248, 0.92);
+  }
+
+  .brand {
+    font-size: 24px;
+  }
+
+  .hero-proto,
+  .story-hero-proto,
+  .tour-hero-proto,
+  .order-proto-main,
+  .story-proto-main,
+  .tour-proto-main {
+    padding-top: 96px;
+  }
+
+  .hero-copy-proto h1,
+  .story-hero-proto h1,
+  .tour-copy-proto h1,
+  .page-intro h1 {
+    font-size: clamp(42px, 13vw, 58px);
+    line-height: 0.98;
+  }
+
+  .hero-copy-proto p,
+  .story-hero-proto p,
+  .tour-copy-proto p,
+  .order-map-intro span,
+  .takeoff-band p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .hero-main-image,
+  .tour-suitcase-image,
+  .map-panel,
+  .prototype-map-box {
+    border-radius: 24px;
+  }
+
+  .hero-float-card {
+    left: 12px;
+    right: 12px;
+    bottom: -18px;
+    max-width: none;
+    padding: 18px;
+  }
+
+  .hero-cta-row,
+  .mini-feature-row,
+  .footer-links,
+  .tour-footer-links,
+  .status-row,
+  .social-order-links {
+    width: 100%;
+  }
+
+  .hero-cta-row .cta-primary,
+  .hero-cta-row .cta-secondary,
+  .social-order-links a,
+  .cta-primary.full {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .rotation-card,
+  .box-card-proto,
+  .red-passport-card,
+  .manifest-grid-proto article,
+  .stamp-tile,
+  .order-item-card {
+    border-radius: 26px;
+  }
+
+  .rotation-card,
+  .manifest-grid-proto article,
+  .box-card-proto,
+  .red-passport-card {
+    padding: 22px;
+  }
+
+  .order-item-copy {
+    padding: 26px 22px;
+  }
+
+  .float-landmark,
+  .landmark,
+  .mosque-watermark,
+  .ghost-landmark {
+    opacity: 0.12;
+    transform: none;
+  }
+
+  .float-landmark .material-symbols-outlined,
+  .landmark .material-symbols-outlined {
+    font-size: 84px !important;
+  }
+
+  .pack-grid {
+    gap: 8px;
+  }
+
+  .pack-grid button {
+    padding: 14px 0;
+  }
+
+  .journey-line {
+    margin-bottom: 96px;
+  }
+
+  .journey-mark {
+    font-size: 9px;
+  }
+
+  .next-gate-grid div {
+    min-height: 220px;
+    font-size: 24px;
+  }
+
+  .passport-book {
+    max-width: 320px;
+  }
+
+  .gold-reward-box {
+    width: 150px;
+    height: 150px;
+    right: -14px;
+    bottom: -14px;
+    font-size: 12px;
+  }
+
+  .gold-reward-box .material-symbols-outlined {
+    font-size: 38px !important;
+  }
+
+  .footer-inner,
+  .tour-footer-inner {
+    align-items: flex-start;
+  }
+}

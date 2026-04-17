@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <link href="styles.css" rel="stylesheet" />
+    <script defer src="script.js"></script>
   </head>
   <body>
     <header class="site-header">
@@ -18,7 +19,6 @@
           <a class="active" href="index.html">Weekly Flavors</a>
           <a href="order.html">Order Now</a>
           <a href="story.html">Our Story</a>
-          <a href="world-tour.html">Locations</a>
         </div>
         <div class="nav-actions">
           <button class="primary-nav-btn" type="button">Order Now</button>
@@ -32,25 +32,30 @@
 
     <main>
       <section class="hero-proto page-width">
-        <div class="hero-copy-proto">
-          <span class="hero-pill">World Tour Edition</span>
-          <h1>A World of <em>Flavor</em> in Every Bite</h1>
-          <p>Curated gourmet cookies inspired by the heritage, spices, and stories of the world's most iconic cities.</p>
+        <div class="hero-copy-proto hero-slide-copy" id="hero-copy-wrap">
+          <span class="hero-pill" id="hero-pill">World Tour Edition</span>
+          <h1 id="hero-title">A World of <em>Flavor</em> in Every Bite</h1>
+          <p id="hero-text">Curated gourmet cookies inspired by the heritage, spices, and stories of the world's most iconic cities.</p>
           <div class="hero-cta-row">
             <button class="cta-primary" type="button">Board the Flight</button>
             <button class="cta-secondary" type="button">View Menu</button>
           </div>
+          <div class="hero-toggle hero-gallery-dots" data-live>
+            <button class="hero-toggle-btn active" type="button" data-hero="nyc" aria-label="Show New Yorker slide"></button>
+            <button class="hero-toggle-btn" type="button" data-hero="strawberry" aria-label="Show Strawberry Shorty slide"></button>
+            <button class="hero-toggle-btn" type="button" data-hero="oman" aria-label="Show Majlis Gold slide"></button>
+          </div>
         </div>
 
-        <div class="hero-art-proto">
+        <div class="hero-art-proto hero-slide-art" id="hero-art-wrap">
           <div class="hero-orb"></div>
-          <img class="hero-main-image" src="assets/new-yorker.jpg" alt="Gourmet Cookies" />
+          <img class="hero-main-image" id="hero-image" src="assets/new-yorker.jpg" alt="Gourmet Cookies" />
           <div class="hero-float-card">
             <div class="hero-float-title">
               <span class="material-symbols-outlined">star</span>
-              <strong>Top Rated</strong>
+              <strong id="hero-badge-title">Top Rated</strong>
             </div>
-            <p>Voted "Most Authentic" by the Global Baker's Guild 2023.</p>
+            <p id="hero-badge-text">Voted "Most Authentic" by the Global Baker's Guild 2023.</p>
           </div>
         </div>
       </section>
