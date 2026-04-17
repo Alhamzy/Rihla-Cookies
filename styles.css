@@ -1531,3 +1531,35 @@ button { font: inherit; border: 0; background: none; color: inherit; }
       url('assets/stamps-bg.jpg') center top / cover no-repeat;
   }
 }
+
+
+.hero-proto {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-proto::before {
+  content: '';
+  position: absolute;
+  inset: 70px 32px 30px 32px;
+  border-radius: 36px;
+  background:
+    linear-gradient(135deg, rgba(124, 88, 0, 0.18), rgba(252, 249, 248, 0.72)),
+    url('assets/stamps-bg.jpg') center center / cover no-repeat;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-proto > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .hero-proto::before {
+    inset: 84px 16px 18px 16px;
+    border-radius: 24px;
+    opacity: 0.44;
+  }
+}
