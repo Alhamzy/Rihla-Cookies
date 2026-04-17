@@ -1,11 +1,26 @@
 const toast = document.createElement('div');
 toast.className = 'site-toast';
-toast.innerHTML = '<div class="site-toast-card"><strong>Coming soon</strong><p>This action is part of the prototype flow and is not fully wired yet.</p><button type="button">Got it</button></div>';
+toast.innerHTML = '<div class="site-toast-card" role="dialog" aria-modal="true" aria-label="Feature not available yet"><strong>Coming soon</strong><p>This action is part of the prototype flow and is not fully wired yet.</p><button type="button" class="toast-dismiss-btn">Got it</button></div>';
 document.body.appendChild(toast);
 
-const toastButton = toast.querySelector('button');
+const toastButton = toast.querySelector('.toast-dismiss-btn');
+const toastCard = toast.querySelector('.site-toast-card');
 const closeToast = () => toast.classList.remove('show');
-toastButton.addEventListener('click', closeToast);
+const openToast = () => toast.classList.add('show');
+
+toastButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  closeToast();
+});
+
+toast.addEventListener('click', (event) => {
+  if (!toastCard.contains(event.target)) closeToast();
+});
+
+toastCard.addEventListener('click', (event) => {
+  event.stopPropagation();
+});
 
 const heroConfigs = {
   nyc: {
@@ -225,13 +240,13 @@ document.addEventListener('click', (event) => {
 
   if (target.closest('.nav-links, .tour-nav-links, .footer-links, .tour-footer-links') && href === '#') {
     event.preventDefault();
-    toast.classList.add('show');
+    openToast();
     return;
   }
 
   if (target.tagName === 'BUTTON') {
     event.preventDefault();
-    toast.classList.add('show');
+    openToast();
   }
 });
 
