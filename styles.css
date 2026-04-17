@@ -1610,7 +1610,7 @@ button { font: inherit; border: 0; background: none; color: inherit; }
 }
 
 .brand-logo-ar {
-  height: 62px;
+  height: 57px;
   width: auto;
   display: block;
   mix-blend-mode: multiply;
@@ -1699,6 +1699,6 @@ button { font: inherit; border: 0; background: none; color: inherit; }
   }
 
   .brand-logo-ar {
-    height: 48px;
+    height: 46px;
   }
 }
