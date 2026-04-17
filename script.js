@@ -30,7 +30,9 @@ const heroConfigs = {
     image: 'assets/new-yorker.jpg',
     alt: 'New Yorker cookie',
     badgeTitle: 'Top Rated',
-    badgeText: 'Voted "Most Authentic" by the Global Baker\'s Guild 2023.'
+    badgeText: 'Voted "Most Authentic" by the Global Baker\'s Guild 2023.',
+    stampLabel: 'Stamp #08',
+    stampName: 'New York'
   },
   strawberry: {
     pill: 'London This Week',
@@ -39,7 +41,9 @@ const heroConfigs = {
     image: 'assets/strawberry.jpg',
     alt: 'Strawberry Shorty cookie',
     badgeTitle: 'Fresh Drop',
-    badgeText: 'This week\'s softest, fruit-forward arrival from the rotation.'
+    badgeText: 'This week\'s softest, fruit-forward arrival from the rotation.',
+    stampLabel: 'Stamp #07',
+    stampName: 'London Berry'
   },
   oman: {
     pill: 'Muscat This Week',
@@ -48,7 +52,9 @@ const heroConfigs = {
     image: 'assets/oman.jpg',
     alt: 'Majlis Gold cookie',
     badgeTitle: 'House Favorite',
-    badgeText: 'An Omani signature with saffron warmth and a richer, heritage-led profile.'
+    badgeText: 'An Omani signature with saffron warmth and a richer, heritage-led profile.',
+    stampLabel: 'Stamp #09',
+    stampName: 'Muscat'
   }
 };
 
@@ -64,6 +70,8 @@ const heroText = document.getElementById('hero-text');
 const heroPill = document.getElementById('hero-pill');
 const heroBadgeTitle = document.getElementById('hero-badge-title');
 const heroBadgeText = document.getElementById('hero-badge-text');
+const heroCityStampLabel = document.getElementById('hero-city-stamp-label');
+const heroCityStampName = document.getElementById('hero-city-stamp-name');
 const heroButtons = document.querySelectorAll('.hero-toggle-btn');
 const heroCopyWrap = document.getElementById('hero-copy-wrap');
 const heroArtWrap = document.getElementById('hero-art-wrap');
@@ -79,6 +87,8 @@ const applyHeroContent = (key) => {
   heroImage.alt = config.alt;
   heroBadgeTitle.textContent = config.badgeTitle;
   heroBadgeText.textContent = config.badgeText;
+  if (heroCityStampLabel) heroCityStampLabel.textContent = config.stampLabel;
+  if (heroCityStampName) heroCityStampName.textContent = config.stampName;
   heroButtons.forEach((button) => button.classList.toggle('active', button.dataset.hero === key));
 };
 
