@@ -1584,6 +1584,10 @@ button { font: inherit; border: 0; background: none; color: inherit; }
   font-size: 34px;
   line-height: 1;
   text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
 }
 
 .brand-stacked span {
@@ -1596,17 +1600,20 @@ button { font: inherit; border: 0; background: none; color: inherit; }
   height: 58px;
   width: auto;
   display: block;
+  mix-blend-mode: multiply;
 }
 
 .brand-arabic {
   display: inline-flex;
   align-items: center;
+  margin-left: 0;
 }
 
 .brand-logo-ar {
   height: 52px;
   width: auto;
   display: block;
+  mix-blend-mode: multiply;
 }
 
 .nav-shell-stacked .nav-links,
