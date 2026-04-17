@@ -103,8 +103,8 @@ const animateHeroTo = (key) => {
       heroCopyWrap.classList.remove('slide-in-right');
       heroArtWrap.classList.remove('slide-in-left');
       isHeroAnimating = false;
-    }, 260);
-  }, 180);
+    }, 460);
+  }, 260);
 };
 
 const startHeroAutoplay = () => {

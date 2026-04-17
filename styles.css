@@ -1223,51 +1223,59 @@ button { font: inherit; border: 0; background: none; color: inherit; }
 
 .hero-slide-copy,
 .hero-slide-art {
-  transition: transform 0.18s ease, opacity 0.18s ease;
-  will-change: transform, opacity;
+  transition: transform 0.28s ease, opacity 0.28s ease, filter 0.28s ease;
+  will-change: transform, opacity, filter;
 }
 
 .hero-slide-copy.slide-out-left {
-  transform: translateX(-26px);
+  transform: translateX(-34px);
   opacity: 0;
+  filter: blur(3px);
 }
 
 .hero-slide-art.slide-out-right {
-  transform: translateX(26px);
+  transform: translateX(34px);
   opacity: 0;
+  filter: blur(3px);
 }
 
 .hero-slide-copy.slide-in-right {
-  transform: translateX(22px);
+  transform: translateX(30px);
   opacity: 0;
-  animation: heroCopyIn 0.26s ease forwards;
+  filter: blur(3px);
+  animation: heroCopyIn 0.46s ease forwards;
 }
 
 .hero-slide-art.slide-in-left {
-  transform: translateX(-22px);
+  transform: translateX(-30px);
   opacity: 0;
-  animation: heroArtIn 0.26s ease forwards;
+  filter: blur(3px);
+  animation: heroArtIn 0.46s ease forwards;
 }
 
 @keyframes heroCopyIn {
   from {
-    transform: translateX(22px);
+    transform: translateX(30px);
     opacity: 0;
+    filter: blur(3px);
   }
   to {
     transform: translateX(0);
     opacity: 1;
+    filter: blur(0);
   }
 }
 
 @keyframes heroArtIn {
   from {
-    transform: translateX(-22px);
+    transform: translateX(-30px);
     opacity: 0;
+    filter: blur(3px);
   }
   to {
     transform: translateX(0);
     opacity: 1;
+    filter: blur(0);
   }
 }
 
