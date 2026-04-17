@@ -1580,9 +1580,15 @@ button { font: inherit; border: 0; background: none; color: inherit; }
 }
 
 .brand-stacked span {
-  font-size: 0.9em;
-  font-weight: 800;
-  margin-left: 6px;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.brand-stacked span img {
+  height: 38px;
+  width: auto;
+  display: block;
 }
 
 .nav-shell-stacked .nav-links,
