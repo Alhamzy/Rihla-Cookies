@@ -1513,11 +1513,9 @@ button { font: inherit; border: 0; background: none; color: inherit; }
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(101, 67, 33, 0.12) 0%, rgba(124, 88, 0, 0.08) 16%, rgba(252, 249, 248, 0.54) 44%, rgba(252, 249, 248, 0.82) 72%, rgba(252, 249, 248, 0.96) 100%),
-    linear-gradient(90deg, rgba(92, 62, 32, 0.14) 0%, rgba(252, 249, 248, 0.04) 28%, rgba(252, 249, 248, 0.10) 100%),
+    linear-gradient(180deg, rgba(124, 88, 0, 0.18) 0%, rgba(124, 88, 0, 0.14) 18%, rgba(252, 249, 248, 0.32) 52%, rgba(252, 249, 248, 0.72) 82%, rgba(252, 249, 248, 0.9) 100%),
     url('assets/stamps-bg.jpg') center top / cover no-repeat;
-  opacity: 0.72;
-  filter: saturate(0.82) sepia(0.12);
+  opacity: 0.5;
 }
 
 .homepage-body > * {
@@ -1527,10 +1525,9 @@ button { font: inherit; border: 0; background: none; color: inherit; }
 
 @media (max-width: 640px) {
   .homepage-stamp-bg {
-    opacity: 0.58;
+    opacity: 0.5;
     background:
-      linear-gradient(180deg, rgba(101, 67, 33, 0.14) 0%, rgba(124, 88, 0, 0.10) 18%, rgba(252, 249, 248, 0.68) 48%, rgba(252, 249, 248, 0.9) 74%, rgba(252, 249, 248, 0.98) 100%),
-      linear-gradient(90deg, rgba(92, 62, 32, 0.12) 0%, rgba(252, 249, 248, 0.05) 100%),
+      linear-gradient(180deg, rgba(124, 88, 0, 0.22) 0%, rgba(124, 88, 0, 0.16) 20%, rgba(252, 249, 248, 0.42) 54%, rgba(252, 249, 248, 0.82) 84%, rgba(252, 249, 248, 0.94) 100%),
       url('assets/stamps-bg.jpg') center top / cover no-repeat;
   }
 }
