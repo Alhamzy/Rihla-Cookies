@@ -1592,11 +1592,21 @@ button { font: inherit; border: 0; background: none; color: inherit; }
   margin-left: 10px;
 }
 
+.brand-logo-en {
+  height: 58px;
+  width: auto;
+  display: block;
+}
+
 .brand-arabic {
-  font-family: 'Yulltan', 'Times New Roman', serif;
-  font-size: 0.95em;
-  line-height: 1;
-  transform: translateY(2px);
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand-logo-ar {
+  height: 52px;
+  width: auto;
+  display: block;
 }
 
 .nav-shell-stacked .nav-links,
@@ -1672,5 +1682,16 @@ button { font: inherit; border: 0; background: none; color: inherit; }
 
   .hero-city-stamp strong {
     font-size: 24px;
+  }
+}
+
+
+@media (max-width: 820px) {
+  .brand-logo-en {
+    height: 46px;
+  }
+
+  .brand-logo-ar {
+    height: 42px;
   }
 }
