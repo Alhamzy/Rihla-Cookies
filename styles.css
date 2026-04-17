@@ -1541,8 +1541,8 @@ button { font: inherit; border: 0; background: none; color: inherit; }
 .hero-proto::before {
   content: '';
   position: absolute;
-  inset: 70px 32px 30px 32px;
-  border-radius: 36px;
+  inset: 28px -24px 8px -24px;
+  border-radius: 52px;
   background:
     linear-gradient(135deg, rgba(124, 88, 0, 0.18), rgba(252, 249, 248, 0.72)),
     url('assets/stamps-bg.jpg') center center / cover no-repeat;
@@ -1558,8 +1558,8 @@ button { font: inherit; border: 0; background: none; color: inherit; }
 
 @media (max-width: 640px) {
   .hero-proto::before {
-    inset: 84px 16px 18px 16px;
-    border-radius: 24px;
+    inset: 58px -8px 8px -8px;
+    border-radius: 28px;
     opacity: 0.44;
   }
 }
