@@ -8,189 +8,166 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              background: "#fcf9f8",
-              primary: "#7c5800",
-              "surface-container-high": "#eae7e7",
-              "on-error": "#ffffff",
-              "on-secondary-container": "#fffbff",
-              "surface-tint": "#7c5800",
-              "primary-container": "#ebb035",
-              "tertiary-container": "#84beff",
-              "surface-variant": "#e5e2e1",
-              "error-container": "#ffdad6",
-              tertiary: "#0061a3",
-              "tertiary-fixed-dim": "#9ecaff",
-              "on-surface-variant": "#504535",
-              "surface-container-low": "#f6f3f2",
-              outline: "#827562",
-              "surface-container-highest": "#e5e2e1",
-              "outline-variant": "#d4c4ae",
-              "on-surface": "#1c1b1b",
-              "on-secondary-fixed": "#410003",
-              "surface-bright": "#fcf9f8",
-              "secondary-container": "#da3433",
-              "surface-dim": "#dcd9d9",
-              "secondary-fixed-dim": "#ffb3ac",
-              error: "#ba1a1a",
-              "on-secondary-fixed-variant": "#930010",
-              "inverse-on-surface": "#f3f0ef",
-              "secondary-fixed": "#ffdad6",
-              surface: "#fcf9f8",
-              "on-tertiary-fixed": "#001d36",
-              "on-background": "#1c1b1b",
-              "on-primary-container": "#624500",
-              "on-primary-fixed-variant": "#5e4200",
-              "inverse-primary": "#f9bc41",
-              "surface-container-lowest": "#ffffff",
-              "on-tertiary-container": "#004c81",
-              "on-error-container": "#93000a",
-              "on-primary-fixed": "#271900",
-              "on-primary": "#ffffff",
-              "on-tertiary-fixed-variant": "#00497c",
-              "on-secondary": "#ffffff",
-              "on-tertiary": "#ffffff",
-              "primary-fixed": "#ffdea7",
-              "primary-fixed-dim": "#f9bc41",
-              "tertiary-fixed": "#d1e4ff"
-            },
-            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
-            fontFamily: { headline: ["Plus Jakarta Sans"], body: ["Inter"], label: ["Inter"] }
-          }
-        }
-      }
-    </script>
-    <style>
-      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-      .luxury-gap { padding-top: 120px; padding-bottom: 120px; }
-      .no-border-rule { border: none !important; }
-      .tonal-shift-bg { background-color: rgba(252, 249, 248, 0.8); }
-    </style>
+    <link href="styles.css" rel="stylesheet" />
   </head>
-  <body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
-    <nav class="fixed top-0 w-full z-50 bg-[#fcf9f8]/80 dark:bg-[#1c1b1b]/80 backdrop-blur-md no-border-rule tonal-shift-bg">
-      <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-6 w-full">
-        <div class="text-2xl font-black text-[#1c1b1b] dark:text-[#fcf9f8] tracking-tighter">Rihla Cookies</div>
-        <div class="hidden md:flex items-center gap-10">
-          <a class="font-['Plus_Jakarta_Sans'] uppercase tracking-[0.1em] text-[10px] font-bold text-[#7c5800] dark:text-[#ebb035] border-b-2 border-[#7c5800] pb-1 hover:scale-105 transition-transform duration-300" href="#">Weekly Flavors</a>
-          <a class="font-['Plus_Jakarta_Sans'] uppercase tracking-[0.1em] text-[10px] font-bold text-[#1c1b1b]/60 dark:text-[#fcf9f8]/60 hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] transition-colors hover:scale-105 transition-transform duration-300" href="#">Order Now</a>
-          <a class="font-['Plus_Jakarta_Sans'] uppercase tracking-[0.1em] text-[10px] font-bold text-[#1c1b1b]/60 dark:text-[#fcf9f8]/60 hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] transition-colors hover:scale-105 transition-transform duration-300" href="#">Our Story</a>
-          <a class="font-['Plus_Jakarta_Sans'] uppercase tracking-[0.1em] text-[10px] font-bold text-[#1c1b1b]/60 dark:text-[#fcf9f8]/60 hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] transition-colors hover:scale-105 transition-transform duration-300" href="#">Locations</a>
+  <body>
+    <header class="site-header">
+      <nav class="nav-shell">
+        <div class="brand">Rihla Cookies</div>
+        <div class="nav-links">
+          <a class="active" href="index.html">Weekly Flavors</a>
+          <a href="order.html">Order Now</a>
+          <a href="story.html">Our Story</a>
+          <a href="world-tour.html">Locations</a>
         </div>
-        <div class="flex items-center gap-4">
-          <button class="hidden md:block px-6 py-2 bg-primary text-on-primary rounded-full font-label text-xs font-bold uppercase tracking-widest hover:scale-105 transition-all">Order Now</button>
-          <div class="flex items-center gap-1 text-[#7c5800] cursor-pointer hover:scale-105 transition-transform">
+        <div class="nav-actions">
+          <button class="primary-nav-btn" type="button">Order Now</button>
+          <button class="passport-nav" type="button">
             <span class="material-symbols-outlined">confirmation_number</span>
-            <span class="font-['Plus_Jakarta_Sans'] uppercase tracking-[0.1em] text-[10px] font-bold">Passport</span>
+            <span>Passport</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-proto page-width">
+        <div class="hero-copy-proto">
+          <span class="hero-pill">World Tour Edition</span>
+          <h1>A World of <em>Flavor</em> in Every Bite</h1>
+          <p>Curated gourmet cookies inspired by the heritage, spices, and stories of the world's most iconic cities.</p>
+          <div class="hero-cta-row">
+            <button class="cta-primary" type="button">Board the Flight</button>
+            <button class="cta-secondary" type="button">View Menu</button>
           </div>
         </div>
-      </div>
-    </nav>
 
-    <main class="pt-20 overflow-hidden">
-      <section class="max-w-7xl mx-auto px-8 luxury-gap flex flex-col items-center text-center">
-        <span class="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label text-[10px] uppercase tracking-widest font-bold mb-6">The Editorial Passport</span>
-        <h1 class="text-6xl md:text-8xl font-black font-headline tracking-tighter leading-none mb-8 text-on-surface">The Flavor Map.</h1>
-        <p class="max-w-2xl text-on-surface-variant text-lg leading-relaxed mb-16">Every recipe is a stamped entry in our journal—a fusion of heritage techniques and the sensory memories of global travel. Our cookies aren't just baked; they are curated.</p>
-        <div class="relative w-full aspect-[21/9] bg-surface-container-low rounded-3xl overflow-hidden group">
-          <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, #827562 1px, transparent 0); background-size: 24px 24px;"></div>
-          <img class="w-full h-full object-cover grayscale opacity-40 mix-blend-multiply" data-location="World" alt="minimalist world map" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzMcuCnxNNEkZpapSR_cwgaAP1JsvR37tWZVo73sjbTJAfwZF3KpZxrssHq4-XeIzr2PydEWw1lqzmmYUBfPrcCtF5b9HawQSVNrAlTYr9gWbz5WU2_E8M0uHR5lWysYCHHq7rAuEosCjGr7CtNxcRVpKj9yAh0w5fhM1kAdzns0cGLCtwf2oLiHTR-nXZPiUSkoP2AqwWwx7Q33R8vbkOSyiXUu4WMLeFT96GpzF0CADMxR--1f6YuZbBQq_6RB2TYQMNSGRJHAM" />
-          <div class="absolute top-[30%] left-[45%] flex flex-col items-center group/pin"><div class="w-4 h-4 bg-secondary rounded-full ring-4 ring-white shadow-lg animate-pulse"></div><div class="mt-2 bg-surface px-3 py-1 rounded-full shadow-xl opacity-0 group-hover/pin:opacity-100 transition-opacity translate-y-2 group-hover/pin:translate-y-0 duration-300"><span class="text-[10px] font-bold uppercase tracking-tighter">London</span></div></div>
-          <div class="absolute top-[35%] left-[25%] flex flex-col items-center group/pin"><div class="w-4 h-4 bg-tertiary rounded-full ring-4 ring-white shadow-lg"></div><div class="mt-2 bg-surface px-3 py-1 rounded-full shadow-xl opacity-0 group-hover/pin:opacity-100 transition-opacity translate-y-2 group-hover/pin:translate-y-0 duration-300"><span class="text-[10px] font-bold uppercase tracking-tighter">New York</span></div></div>
-          <div class="absolute top-[55%] left-[62%] flex flex-col items-center group/pin"><div class="w-4 h-4 bg-primary rounded-full ring-4 ring-white shadow-lg"></div><div class="mt-2 bg-surface px-3 py-1 rounded-full shadow-xl opacity-0 group-hover/pin:opacity-100 transition-opacity translate-y-2 group-hover/pin:translate-y-0 duration-300"><span class="text-[10px] font-bold uppercase tracking-tighter">Muscat</span></div></div>
-        </div>
-      </section>
-
-      <section class="bg-surface-container-low luxury-gap">
-        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
-          <div class="md:col-span-5 relative">
-            <div class="absolute -top-12 -left-12 w-32 h-32 text-secondary/10 flex items-center justify-center"><span class="material-symbols-outlined text-[100px]">castle</span></div>
-            <img class="rounded-2xl shadow-2xl relative z-10 w-full aspect-[4/5] object-cover" alt="strawberry shortbread cookie" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxJBJgrQP0dbqrI-wZypKkqG6Ao-c_fO50b2HttXBF-QJJt3Q4Ze65Bidsnk3leLtQ-Q0xlreqT1A5tiTLLXve9cWn-0fVv6HmMDSNCA7pu_ye85dhlduhtIUOMc2eLVuZgZsOMXGQkqJZyoypgLnYMY06ofSpzh1zHEAowoZDea6M5fAGceh0XYWLhvSarC2fpqDsqsC1ycxR3QNGFs0cxMJooquQXVBFuSmHopqGxIkLSxkq9_AiQBhplP75hUIL3UQKzNv3UW4" />
-            <div class="absolute -bottom-8 -right-8 p-6 bg-surface rounded-2xl shadow-xl z-20 max-w-[200px]"><p class="text-[10px] uppercase font-bold tracking-widest text-secondary mb-2">Heritage Note</p><p class="text-xs italic leading-snug">"The perfect companion to a rainy afternoon in Marylebone."</p></div>
-          </div>
-          <div class="md:col-span-7">
-            <h2 class="text-4xl md:text-5xl font-black font-headline tracking-tighter mb-6 text-on-surface">London's Tea Time.</h2>
-            <h3 class="text-xl font-medium text-secondary mb-8">The Strawberry Shorty</h3>
-            <p class="text-on-surface-variant text-lg leading-relaxed mb-8">Informed by the crisp mornings of Covent Garden and the refined ritual of high tea. We took the classic British shortbread and reimagined it with a heart of macerated strawberries and a delicate clotted cream frosting. A bite of summer, even when the fog rolls in.</p>
-            <div class="flex items-center gap-4">
-              <div class="bg-surface p-4 rounded-xl flex items-center gap-3"><span class="material-symbols-outlined text-secondary">local_cafe</span><span class="text-[10px] font-bold uppercase tracking-widest">Earl Grey Infused</span></div>
-              <div class="bg-surface p-4 rounded-xl flex items-center gap-3"><span class="material-symbols-outlined text-secondary">cake</span><span class="text-[10px] font-bold uppercase tracking-widest">Hand-Churned</span></div>
+        <div class="hero-art-proto">
+          <div class="hero-orb"></div>
+          <img class="hero-main-image" src="assets/new-yorker.jpg" alt="Gourmet Cookies" />
+          <div class="hero-float-card">
+            <div class="hero-float-title">
+              <span class="material-symbols-outlined">star</span>
+              <strong>Top Rated</strong>
             </div>
+            <p>Voted "Most Authentic" by the Global Baker's Guild 2023.</p>
           </div>
         </div>
       </section>
 
-      <section class="luxury-gap">
-        <div class="max-w-7xl mx-auto px-8">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="md:col-span-2 flex flex-col justify-center">
-              <span class="text-tertiary font-bold tracking-widest text-[10px] uppercase mb-4">Concrete Dreams</span>
-              <h2 class="text-4xl md:text-6xl font-black font-headline tracking-tighter mb-8 leading-none">The Streets of Manhattan.</h2>
-              <p class="text-on-surface-variant text-lg leading-relaxed mb-8">Inspired by the 'everything, everywhere' energy of the Lower East Side. This is "The New Yorker"—a heavy, oversized cookie featuring dark chocolate chunks, sea salt, and a toasted pretzel crunch that mirrors the city's beautiful chaos.</p>
+      <section class="rotation-proto">
+        <div class="page-width">
+          <div class="section-top-row">
+            <div>
+              <h2>Weekly Rotation</h2>
+              <p>Our globe-trotting oven lands in these destinations this week. Get them before the flight departs.</p>
             </div>
-            <div class="md:col-span-2 grid grid-cols-2 gap-4">
-              <div class="aspect-square rounded-2xl overflow-hidden shadow-lg"><img class="w-full h-full object-cover" alt="New York street" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0PRNXaX73RHQhuCmlJ14l8MT9GnxDtx1XKWCNbr_YfMvXwx4VSaoCqa9KSu7W29PVfBWtK6y6kd0X-U6jFA-y5JC0H3h6_NMaebcUrpLFFkIgmz9oMhlArGZk7vqRzE7St9rQz-8b20fCfQ20kjH3jx5zeie7G-zW7KbUFQWBx_fdKfZTvZSykHPQRvkOAgYH2PScI3UY-ye0UJhShucILN7Vi5bUafAXeVIhkA438c1z76lNIvMuf4Ut-ijACgzX--0SJGZlWA8" /></div>
-              <div class="aspect-square rounded-2xl overflow-hidden shadow-lg mt-8"><img class="w-full h-full object-cover" alt="thick chocolate chip cookie" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBONMxO1PdQkUN6G8eWVvonbKe7-2WKvufOTYG-clZIJtrYiu3jYaR9fVu-662lgB6Y9HX7OIqCATPIjOsDbiD5NIw7Ug2AUaLYPPuzbvjHkTEarIYzKT3MjMNMCcOrP_Q72zrrOAoRq54s5hXBQdD6TJeXPl0i88Ww22wRipiOd7dXpMAI_iYHlbWVVDat0_UJzXdnySfWQruldQu0kmS6Hoz6a5txBbnVngWp5wpwybdvfQauUxLqwIZTpVVb-5oFeD51hcAj8m4" /></div>
-              <div class="col-span-2 aspect-[2/1] rounded-2xl overflow-hidden shadow-lg relative group"><div class="absolute inset-0 bg-gradient-to-t from-tertiary/60 to-transparent z-10"></div><img class="w-full h-full object-cover" alt="Manhattan skyline" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2GIAtxorSF9WfIR9TpPsHUK_gojQ7EdLNY05rX2Mum-mfj2UCtgveTkOQZv43WHZneSPKTDVzZvs7JvceMWwEL76_cxlPjM-f5OA5fUPZItXGMeXZu_en0wlx7V3VUIEwP7F92DDTIT9Zwf2aplH40uY4tRf8oLaclqsIEb8DCi34yPwsvHlRyLPJreK-sbVoLsWiuKAtcvJGvu4hda5tWU-cPVFyB_UcFoAYLJn2cWrCsIbljZJHcNTgrTiVRQNbvGxUllYLVSI" /><div class="absolute bottom-6 left-6 z-20 flex items-center gap-2 text-white"><span class="material-symbols-outlined">location_on</span><span class="text-xs font-bold uppercase tracking-widest">Empire State Of Mind</span></div></div>
+            <div class="status-row">
+              <div class="status-pill live"><span class="dot"></span>Live Now</div>
+              <div class="status-pill">Ends in 3 Days</div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section class="bg-primary-container/10 luxury-gap overflow-hidden">
-        <div class="max-w-7xl mx-auto px-8 relative">
-          <div class="absolute -right-20 top-0 opacity-10 rotate-12 pointer-events-none"><span class="material-symbols-outlined text-[300px]" style="font-variation-settings: 'FILL' 1;">mosque</span></div>
-          <div class="flex flex-col md:flex-row items-center gap-16 relative z-10">
-            <div class="w-full md:w-1/2 order-2 md:order-1">
-              <h2 class="text-4xl md:text-5xl font-black font-headline tracking-tighter mb-4 text-on-surface">The Heart of Muscat.</h2>
-              <h3 class="text-2xl font-bold text-primary mb-8">The Majlis Gold</h3>
-              <p class="text-on-surface-variant text-lg leading-relaxed mb-8">Our origin story. This cookie captures the hospitality of the Omani Majlis. We use premium saffron threads and hand-ground cardamom, folded into a dough that is soft as the dunes of the Sharqiya Sands. Topped with a single leaf of 24k gold, it is our tribute to the art of the welcome.</p>
-              <div class="grid grid-cols-2 gap-4">
-                <div class="flex flex-col border-l-2 border-primary pl-6 py-2"><span class="text-2xl font-black text-primary mb-1">98%</span><span class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant">Saffron Purity</span></div>
-                <div class="flex flex-col border-l-2 border-primary pl-6 py-2"><span class="text-2xl font-black text-primary mb-1">Legacy</span><span class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant">Three Generations</span></div>
+          <div class="rotation-grid">
+            <article class="rotation-card">
+              <div class="landmark landmark-red"><span class="material-symbols-outlined">castle</span></div>
+              <span class="region-chip region-red">United Kingdom</span>
+              <h3>Strawberry Shorty</h3>
+              <p>Strawberries and clotted cream, inspired by the Royal Gardens.</p>
+              <div class="cookie-stage">
+                <img src="assets/strawberry.jpg" alt="Strawberry Cookie" />
+                <div class="mini-badge badge-red"><span class="material-symbols-outlined">directions_bus</span></div>
               </div>
-            </div>
-            <div class="w-full md:w-1/2 order-1 md:order-2 flex justify-center">
-              <div class="relative">
-                <div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-125"></div>
-                <img class="w-64 md:w-96 aspect-square object-cover rounded-full shadow-2xl ring-8 ring-background relative z-10" alt="gold-flecked cookie" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQXeZ3MMu1anNO5TiqjQIXPuqI_4bDfI-RtGh3-edsXsrH9JfEVbfXpFF3tnZjiZGo174GwuEgns43yRu52Hwk6I3hQ-pYY4U413e2tARLxZTNYECAju67LiFYvZdd9aVeGZ-klwG7kSwlu3IKB72cto3rABx2sn4l3RjV7549I0ekwRS9HGxMHnUjZZsbRpeJjDiZTtiWNm0kIXmGcsb0VNdRrpm5KsS9nI8ryXwgagoOY5VY3JNy99_zscwJ_omhLwDCUYk3L6Y" />
-                <div class="absolute -top-6 -right-6 bg-surface p-4 rounded-full shadow-xl z-20"><span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">star</span></div>
+              <button class="add-box-btn" type="button">Add to Box <span class="material-symbols-outlined">add</span></button>
+            </article>
+
+            <article class="rotation-card">
+              <div class="landmark landmark-blue"><span class="material-symbols-outlined">robot</span></div>
+              <span class="region-chip region-blue">New York, USA</span>
+              <h3>The New Yorker</h3>
+              <p>Classic chunky chocolate chip with toasted walnuts and sea salt.</p>
+              <div class="cookie-stage">
+                <img src="assets/new-yorker.jpg" alt="Chocolate Chip Cookie" />
+                <div class="mini-badge badge-blue"><span class="material-symbols-outlined">apartment</span></div>
               </div>
-            </div>
+              <button class="add-box-btn" type="button">Add to Box <span class="material-symbols-outlined">add</span></button>
+            </article>
+
+            <article class="rotation-card">
+              <div class="landmark landmark-gold"><span class="material-symbols-outlined">mosque</span></div>
+              <span class="region-chip region-gold">Muscat, Oman</span>
+              <h3>The Majlis Gold</h3>
+              <p>Saffron infused butter cookie with cardamom and pistachio.</p>
+              <div class="cookie-stage">
+                <img src="assets/oman.jpg" alt="Saffron Cookie" />
+                <div class="mini-badge badge-gold"><span class="material-symbols-outlined">sailing</span></div>
+              </div>
+              <button class="add-box-btn" type="button">Add to Box <span class="material-symbols-outlined">add</span></button>
+            </article>
           </div>
         </div>
       </section>
 
-      <section class="max-w-4xl mx-auto px-8 luxury-gap text-center">
-        <h4 class="font-headline font-bold mb-8 uppercase tracking-widest text-xs">Our Journey So Far</h4>
-        <div class="relative h-1 bg-surface-container-high w-full rounded-full mb-12">
-          <div class="absolute top-0 left-0 h-full w-3/4 bg-primary rounded-full"></div>
-          <div class="absolute top-1/2 left-3/4 -translate-y-1/2 -translate-x-1/2 bg-surface p-2 rounded-full shadow-lg"><span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">flight</span></div>
-          <div class="absolute top-4 left-0 text-[10px] font-bold uppercase text-on-surface-variant">Muscat (2018)</div>
-          <div class="absolute top-4 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase text-on-surface-variant">London (2021)</div>
-          <div class="absolute top-4 right-0 text-[10px] font-bold uppercase text-primary">New York (Now)</div>
+      <section class="passport-proto">
+        <div class="page-width">
+          <div class="passport-panel-proto">
+            <div class="passport-copy-proto">
+              <h2>Track Your Passport</h2>
+              <p>Every cookie is a stamp. Every dozen is a reward. Collect stamps from every destination to unlock limited-edition boxes and early flight access.</p>
+
+              <div class="passport-progress-wrap">
+                <div class="progress-head">
+                  <span>Frequent Flyer Progress</span>
+                  <span>8 / 12 Stamps</span>
+                </div>
+                <div class="passport-progress-bar">
+                  <div class="passport-progress-fill"></div>
+                  <span class="material-symbols-outlined plane-mark">flight</span>
+                </div>
+              </div>
+
+              <button class="cta-primary large" type="button">Open Your Passport</button>
+            </div>
+
+            <div class="passport-stamps-grid">
+              <article class="stamp-tile tilt-left">
+                <span class="material-symbols-outlined red">confirmation_number</span>
+                <p>Stamp #08</p>
+                <h4>London</h4>
+              </article>
+              <article class="stamp-tile tilt-right offset-down">
+                <span class="material-symbols-outlined blue">confirmation_number</span>
+                <p>Stamp #07</p>
+                <h4>NYC</h4>
+              </article>
+              <article class="stamp-tile tilt-left-small">
+                <span class="material-symbols-outlined gold">confirmation_number</span>
+                <p>Stamp #09</p>
+                <h4>Muscat</h4>
+              </article>
+              <article class="stamp-tile pending offset-down">
+                <p>Stamp Pending</p>
+              </article>
+            </div>
+
+            <div class="passport-glow"></div>
+          </div>
         </div>
-        <button class="bg-primary text-on-primary px-10 py-4 rounded-full font-headline font-extrabold uppercase tracking-widest text-sm hover:scale-105 transition-all shadow-xl">Start Your Journey</button>
       </section>
     </main>
 
-    <footer class="bg-[#fcf9f8] dark:bg-[#1c1b1b] w-full py-12 px-8 border-t border-surface-container-highest">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
-        <div class="text-lg font-bold text-[#1c1b1b] dark:text-[#fcf9f8] font-headline uppercase">Rihla Cookies</div>
-        <div class="flex gap-6">
-          <a class="font-['Inter'] text-xs tracking-wide text-[#1c1b1b]/40 dark:text-[#fcf9f8]/40 hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="#">Shipping Policy</a>
-          <a class="font-['Inter'] text-xs tracking-wide text-[#1c1b1b]/40 dark:text-[#fcf9f8]/40 hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="#">Global Terms</a>
-          <a class="font-['Inter'] text-xs tracking-wide text-[#1c1b1b]/40 dark:text-[#fcf9f8]/40 hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="#">Sustainability</a>
-          <a class="font-['Inter'] text-xs tracking-wide text-[#1c1b1b]/40 dark:text-[#fcf9f8]/40 hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="#">Wholesale</a>
+    <footer class="footer-proto">
+      <div class="page-width footer-inner">
+        <div>
+          <div class="footer-brand">Rihla Cookies</div>
+          <p>© 2024 Rihla Cookies. The Editorial Passport.</p>
         </div>
-        <p class="font-['Inter'] text-xs tracking-wide text-[#1c1b1b]/40 dark:text-[#fcf9f8]/40 text-center md:text-right">© 2024 Rihla Cookies. Curated by The Nomadic Patisserie.</p>
+        <div class="footer-links">
+          <a href="#">Passport Loyalty</a>
+          <a href="#">Instagram</a>
+          <a href="#">Shipping Info</a>
+          <a href="#">Contact</a>
+        </div>
       </div>
     </footer>
   </body>
