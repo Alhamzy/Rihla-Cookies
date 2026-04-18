@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;700;800;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link href="styles.css" rel="stylesheet" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script defer src="script.js"></script>
   </head>
   <body>
@@ -32,21 +34,7 @@
         <span class="story-pill">The Editorial Passport</span>
         <h1>The Flavor Map.</h1>
         <p>Every recipe is a stamped entry in our journal, a fusion of heritage techniques and the sensory memories of global travel. Our cookies aren't just baked, they are curated.</p>
-        <div class="map-panel">
-          <img class="map-panel-image" src="assets/flavor-map.png" alt="World map with the Rihla flavor journey across London, New York, and Muscat" />
-          <a class="map-pin london" href="#london-story" aria-label="London">
-            <span class="map-pin-core"></span>
-            <span class="map-pin-label">London</span>
-          </a>
-          <a class="map-pin nyc" href="#nyc-story" aria-label="New York">
-            <span class="map-pin-core"></span>
-            <span class="map-pin-label">New York</span>
-          </a>
-          <a class="map-pin muscat" href="#muscat-story" aria-label="Muscat">
-            <span class="map-pin-core"></span>
-            <span class="map-pin-label">Muscat</span>
-          </a>
-        </div>
+        <div class="map-panel leaflet-map-wrap"><div id="story-map-live" class="story-live-map"></div></div>
       </section>
 
       <section class="story-band soft" id="london-story">

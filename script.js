@@ -265,3 +265,30 @@ document.addEventListener('keydown', (event) => {
 });
 
 renderOrderBox();
+
+
+const storyMapEl = document.getElementById('story-map-live');
+if (storyMapEl && window.L) {
+  const storyMap = L.map('story-map-live', {
+    zoomControl: false,
+    attributionControl: false,
+    scrollWheelZoom: false,
+    dragging: true,
+    tap: true
+  }).setView([32, 10], 2);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18
+  }).addTo(storyMap);
+
+  const locations = [
+    { name: 'New York', coords: [40.7128, -74.006] },
+    { name: 'London', coords: [51.5074, -0.1278] },
+    { name: 'Muscat', coords: [23.588, 58.3829] }
+  ];
+
+  locations.forEach((location) => {
+    const marker = L.marker(location.coords).addTo(storyMap);
+    marker.bindTooltip(location.name, { direction: 'top', offset: [0, -10] });
+  });
+}
