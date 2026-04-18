@@ -568,14 +568,17 @@ button { font: inherit; border: 0; background: none; color: inherit; }
   position: relative;
   width: 100%;
   aspect-ratio: 21 / 9;
-  background: var(--surface-soft);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(246, 243, 242, 0.86)),
+    url('assets/world-map.svg') center center / 88% auto no-repeat,
+    var(--surface-soft);
   border-radius: 32px;
   overflow: hidden;
 }
 .map-dot-bg {
   position: absolute;
   inset: 0;
-  opacity: 0.18;
+  opacity: 0.1;
   background-image: radial-gradient(circle at 2px 2px, #827562 1px, transparent 0);
   background-size: 24px 24px;
 }
