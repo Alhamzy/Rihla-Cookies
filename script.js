@@ -292,3 +292,20 @@ if (storyMapEl && window.L) {
     marker.bindTooltip(location.name, { direction: 'top', offset: [0, -10] });
   });
 }
+
+
+const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+const navShell = document.querySelector('.nav-shell');
+if (mobileNavToggle && navShell) {
+  mobileNavToggle.addEventListener('click', () => {
+    const isOpen = navShell.classList.toggle('mobile-nav-open');
+    mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!navShell.contains(event.target)) {
+      navShell.classList.remove('mobile-nav-open');
+      mobileNavToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
