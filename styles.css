@@ -568,30 +568,141 @@ button { font: inherit; border: 0; background: none; color: inherit; }
   position: relative;
   width: 100%;
   aspect-ratio: 21 / 9;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(246, 243, 242, 0.86)),
-    url('assets/world-map.svg') center center / 88% auto no-repeat,
-    var(--surface-soft);
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.55), rgba(252, 249, 248, 0) 54%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(246, 243, 242, 0.5)),
+    #ead9bc;
   border-radius: 32px;
   overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(212, 196, 174, 0.45);
 }
-.map-dot-bg {
-  position: absolute;
-  inset: 0;
-  opacity: 0.1;
-  background-image: radial-gradient(circle at 2px 2px, #827562 1px, transparent 0);
-  background-size: 24px 24px;
+
+.map-panel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
+
 .map-pin {
   position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 999px;
-  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.9);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
-.map-pin.london { top: 30%; left: 45%; background: var(--secondary); }
-.map-pin.nyc { top: 35%; left: 25%; background: var(--tertiary); }
-.map-pin.muscat { top: 55%; left: 62%; background: var(--primary); }
+
+.map-pin-core {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 7px rgba(255, 255, 255, 0.34),
+    0 10px 22px rgba(28, 27, 27, 0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.map-pin-label {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  pointer-events: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--text);
+  box-shadow: 0 18px 36px rgba(28, 27, 27, 0.12);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.map-pin-label::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: calc(100% - 2px);
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.96);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.map-pin:hover .map-pin-core,
+.map-pin:focus-visible .map-pin-core {
+  transform: scale(1.16);
+  box-shadow:
+    0 0 0 8px rgba(255, 255, 255, 0.44),
+    0 14px 28px rgba(28, 27, 27, 0.22);
+}
+
+.map-pin:hover .map-pin-label,
+.map-pin:focus-visible .map-pin-label {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.map-pin:focus-visible {
+  outline: none;
+}
+
+.map-pin.london { top: 29.5%; left: 45.8%; }
+.map-pin.london .map-pin-core { background: var(--secondary); }
+
+.map-pin.nyc { top: 33.5%; left: 26.8%; }
+.map-pin.nyc .map-pin-core { background: var(--tertiary); }
+
+.map-pin.muscat { top: 43.5%; left: 56.6%; }
+.map-pin.muscat .map-pin-core { background: var(--primary); }
+
+.map-pin.nyc .map-pin-label {
+  left: calc(100% + 18px);
+  bottom: 50%;
+  transform: translate(8px, 50%);
+}
+
+.map-pin.nyc .map-pin-label::after {
+  left: -3px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.map-pin.nyc:hover .map-pin-label,
+.map-pin.nyc:focus-visible .map-pin-label {
+  transform: translate(0, 50%);
+}
+
+.map-pin.muscat .map-pin-label {
+  left: auto;
+  right: calc(100% + 18px);
+  bottom: 50%;
+  transform: translate(-8px, 50%);
+}
+
+.map-pin.muscat .map-pin-label::after {
+  left: auto;
+  right: -3px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.map-pin.muscat:hover .map-pin-label,
+.map-pin.muscat:focus-visible .map-pin-label {
+  transform: translate(0, 50%);
+}
+
 .story-band { padding: 96px 0; }
 .story-band.soft { background: var(--surface-soft); }
 .story-band.gold-wash { background: rgba(235, 176, 53, 0.1); }
@@ -1409,6 +1520,20 @@ button { font: inherit; border: 0; background: none; color: inherit; }
   .map-panel,
   .prototype-map-box {
     border-radius: 24px;
+  }
+
+  .map-pin-core {
+    width: 16px;
+    height: 16px;
+    box-shadow:
+      0 0 0 5px rgba(255, 255, 255, 0.36),
+      0 10px 20px rgba(28, 27, 27, 0.16);
+  }
+
+  .map-pin-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    padding: 8px 12px;
   }
 
   .hero-float-card {

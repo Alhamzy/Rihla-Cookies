@@ -33,14 +33,23 @@
         <h1>The Flavor Map.</h1>
         <p>Every recipe is a stamped entry in our journal, a fusion of heritage techniques and the sensory memories of global travel. Our cookies aren't just baked, they are curated.</p>
         <div class="map-panel">
-          <div class="map-dot-bg"></div>
-          <div class="map-pin london"><span>London</span></div>
-          <div class="map-pin nyc"><span>New York</span></div>
-          <div class="map-pin muscat"><span>Muscat</span></div>
+          <img class="map-panel-image" src="assets/flavor-map.png" alt="World map with the Rihla flavor journey across London, New York, and Muscat" />
+          <a class="map-pin london" href="#london-story" aria-label="London">
+            <span class="map-pin-core"></span>
+            <span class="map-pin-label">London</span>
+          </a>
+          <a class="map-pin nyc" href="#nyc-story" aria-label="New York">
+            <span class="map-pin-core"></span>
+            <span class="map-pin-label">New York</span>
+          </a>
+          <a class="map-pin muscat" href="#muscat-story" aria-label="Muscat">
+            <span class="map-pin-core"></span>
+            <span class="map-pin-label">Muscat</span>
+          </a>
         </div>
       </section>
 
-      <section class="story-band soft">
+      <section class="story-band soft" id="london-story">
         <div class="page-width story-editorial-grid">
           <div class="story-copy">
             <span class="mini-label red">Tea Time Rituals</span>
@@ -55,7 +64,7 @@
         </div>
       </section>
 
-      <section class="story-band">
+      <section class="story-band" id="nyc-story">
         <div class="page-width story-editorial-grid">
           <div class="story-copy">
             <span class="mini-label blue">Concrete Dreams</span>
@@ -70,7 +79,7 @@
         </div>
       </section>
 
-      <section class="story-band gold-wash">
+      <section class="story-band gold-wash" id="muscat-story">
         <div class="page-width story-editorial-grid">
           <div class="story-copy">
             <span class="mini-label gold">Desert Warmth</span>
