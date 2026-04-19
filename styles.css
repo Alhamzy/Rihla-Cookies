@@ -1996,17 +1996,21 @@ button { font: inherit; border: 0; background: none; color: inherit; }
     display: grid;
     gap: 10px;
     background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(212, 196, 174, 0.38);
     border-radius: 24px;
     padding: 16px;
-    box-shadow: 0 24px 60px rgba(28, 27, 27, 0.12);
+    box-shadow: 0 24px 60px rgba(28, 27, 27, 0.18);
+    z-index: 120;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
     transform: translateY(-8px);
-    transition: opacity 0.22s ease, transform 0.22s ease;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
   }
 
   .nav-shell.mobile-nav-open .mobile-nav-panel {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
     transform: translateY(0);
   }
