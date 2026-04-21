@@ -3,6 +3,18 @@ import { HashRouter, Link, NavLink, Route, Routes } from 'react-router-dom'
 import Globe from 'react-globe.gl'
 import './index.css'
 
+import newYorkerImg from '../assets/new-yorker.jpg'
+import strawberryImg from '../assets/strawberry.jpg'
+import omanImg from '../assets/oman.jpg'
+import londonCity1Img from '../assets/london-city-1.jpg'
+import londonCity2Img from '../assets/london-city-2.jpg'
+import nycCity1Img from '../assets/nyc-city-1.jpg'
+import nycCity2Img from '../assets/nyc-city-2.jpg'
+import muscatCity1Img from '../assets/muscat-city-1.jpg'
+import muscatCity2Img from '../assets/muscat-city-2.jpg'
+import rihlaLogoEn from '../assets/rihla-logo-en.png'
+import rihlaLogoAr from '../assets/rihla-logo-ar.png'
+
 const heroConfigs = {
   nyc: {
     pill: 'World Tour Edition',
@@ -10,7 +22,7 @@ const heroConfigs = {
     titleEmphasis: 'Flavor',
     titleEnd: ' in Every Bite',
     text: "Curated gourmet cookies inspired by the heritage, spices, and stories of the world's most iconic cities.",
-    image: 'assets/new-yorker.jpg',
+    image: newYorkerImg,
     alt: 'New Yorker cookie',
     badgeTitle: 'Top Rated',
     badgeText: 'Voted "Most Authentic" by the Global Baker\'s Guild 2023.',
@@ -23,7 +35,7 @@ const heroConfigs = {
     titleEmphasis: 'Berry',
     titleEnd: ' Softness in Every Bite',
     text: 'Bright strawberry notes, creaminess, and a softer travel-journal mood inspired by London tea rituals.',
-    image: 'assets/strawberry.jpg',
+    image: strawberryImg,
     alt: 'Strawberry Shorty cookie',
     badgeTitle: 'Fresh Drop',
     badgeText: "This week's softest, fruit-forward arrival from the rotation.",
@@ -36,7 +48,7 @@ const heroConfigs = {
     titleEmphasis: 'Golden',
     titleEnd: ' Warmth in Every Bite',
     text: 'Saffron, pistachio, and cardamom layered into a warmer hero moment inspired by the Majlis Gold profile.',
-    image: 'assets/oman.jpg',
+    image: omanImg,
     alt: 'Majlis Gold cookie',
     badgeTitle: 'House Favorite',
     badgeText: 'An Omani signature with saffron warmth and a richer, heritage-led profile.',
@@ -54,9 +66,9 @@ const navLinks = [
 ]
 
 const weeklyCards = [
-  { regionClass: 'region-red', badgeClass: 'badge-red', landmarkClass: 'landmark-red', landmark: 'castle', badgeIcon: 'directions_bus', region: 'United Kingdom', title: 'Strawberry Shorty', text: 'Strawberries and clotted cream, inspired by the Royal Gardens.', image: 'assets/strawberry.jpg', alt: 'Strawberry Cookie' },
-  { regionClass: 'region-blue', badgeClass: 'badge-blue', landmarkClass: 'landmark-blue', landmark: 'robot', badgeIcon: 'apartment', region: 'New York, USA', title: 'The New Yorker', text: 'Classic chunky chocolate chip with toasted walnuts and sea salt.', image: 'assets/new-yorker.jpg', alt: 'Chocolate Chip Cookie' },
-  { regionClass: 'region-gold', badgeClass: 'badge-gold', landmarkClass: 'landmark-gold', landmark: 'mosque', badgeIcon: 'sailing', region: 'Muscat, Oman', title: 'The Majlis Gold', text: 'Saffron infused butter cookie with cardamom and pistachio.', image: 'assets/oman.jpg', alt: 'Saffron Cookie' }
+  { regionClass: 'region-red', badgeClass: 'badge-red', landmarkClass: 'landmark-red', landmark: 'castle', badgeIcon: 'directions_bus', region: 'United Kingdom', title: 'Strawberry Shorty', text: 'Strawberries and clotted cream, inspired by the Royal Gardens.', image: strawberryImg, alt: 'Strawberry Cookie' },
+  { regionClass: 'region-blue', badgeClass: 'badge-blue', landmarkClass: 'landmark-blue', landmark: 'robot', badgeIcon: 'apartment', region: 'New York, USA', title: 'The New Yorker', text: 'Classic chunky chocolate chip with toasted walnuts and sea salt.', image: newYorkerImg, alt: 'Chocolate Chip Cookie' },
+  { regionClass: 'region-gold', badgeClass: 'badge-gold', landmarkClass: 'landmark-gold', landmark: 'mosque', badgeIcon: 'sailing', region: 'Muscat, Oman', title: 'The Majlis Gold', text: 'Saffron infused butter cookie with cardamom and pistachio.', image: omanImg, alt: 'Saffron Cookie' }
 ]
 
 const orderItems = {
@@ -81,7 +93,7 @@ function SiteShell({ children, active }) {
           <button className="mobile-nav-toggle" type="button" aria-expanded={mobileNavOpen} aria-controls="site-mobile-nav" aria-label="Open navigation" onClick={() => setMobileNavOpen((open) => !open)}>
             <span className="material-symbols-outlined">menu</span>
           </button>
-          <div className="brand brand-stacked"><img className="brand-logo-en" src="assets/rihla-logo-en.png" alt="Rihla" /><span className="brand-arabic"><img className="brand-logo-ar" src="assets/rihla-logo-ar.png" alt="رحلة" /></span></div>
+          <div className="brand brand-stacked"><img className="brand-logo-en" src={rihlaLogoEn} alt="Rihla" /><span className="brand-arabic"><img className="brand-logo-ar" src={rihlaLogoAr} alt="رحلة" /></span></div>
           <div className="nav-links">
             {navLinks.slice(0, 3).map((link) => (
               <NavLink key={link.to} to={link.to} className={({ isActive }) => isActive || active === link.to ? 'active' : ''}>{link.label}</NavLink>
@@ -167,9 +179,9 @@ function OrderPage() {
     return `Hi Rihla Cookies, I want to place an order.%0A%0APack size: ${selectedPack}%0ATotal cookies selected: ${orderBag.length}%0A%0AOrder summary:%0A${lines.join('%0A')}%0A%0ASubtotal: $${subtotal.toFixed(2)}`
   }
   return <SiteShell active="/order"><main className="order-proto-main page-width"><header className="page-intro"><p>The Editorial Passport</p><h1>Start Your Journey</h1></header><div className="order-layout-proto"><section className="order-list-proto">{[
-    { id: 'earl-grey', image: 'assets/strawberry.jpg', tag: 'London', tagClass: 'red', landmark: 'castle', landmarkClass: 'red', title: 'The Earl Grey Chunk', text: 'Bergamot infused dough with 70% dark chocolate shards and a hint of English lavender.', price: '$4.50' },
-    { id: 'big-apple', image: 'assets/new-yorker.jpg', tag: 'NYC', tagClass: 'blue', landmark: 'robot', landmarkClass: 'blue', title: 'The Big Apple Levain', text: 'A massive 6oz cookie with toasted walnuts, semi-sweet chips, and a gooey molten center.', price: '$5.50', reverse: true },
-    { id: 'saffron-jewel', image: 'assets/oman.jpg', tag: 'Muscat', tagClass: 'gold', landmark: 'mosque', landmarkClass: 'gold', title: 'The Saffron Jewel', text: 'Omani saffron, white chocolate, and crushed pistachios finished with local honey drizzle.', price: '$6.00' }
+    { id: 'earl-grey', image: strawberryImg, tag: 'London', tagClass: 'red', landmark: 'castle', landmarkClass: 'red', title: 'The Earl Grey Chunk', text: 'Bergamot infused dough with 70% dark chocolate shards and a hint of English lavender.', price: '$4.50' },
+    { id: 'big-apple', image: newYorkerImg, tag: 'NYC', tagClass: 'blue', landmark: 'robot', landmarkClass: 'blue', title: 'The Big Apple Levain', text: 'A massive 6oz cookie with toasted walnuts, semi-sweet chips, and a gooey molten center.', price: '$5.50', reverse: true },
+    { id: 'saffron-jewel', image: omanImg, tag: 'Muscat', tagClass: 'gold', landmark: 'mosque', landmarkClass: 'gold', title: 'The Saffron Jewel', text: 'Omani saffron, white chocolate, and crushed pistachios finished with local honey drizzle.', price: '$6.00' }
   ].map((item) => <article key={item.id} className={`order-item-card ${item.reverse ? 'reverse' : ''}`}><div className={`order-item-image ${item.reverse ? 'right' : 'left'}`}><img src={item.image} alt={item.title} /><span className={`region-tag ${item.tagClass}`}>{item.tag}</span></div><div className="order-item-copy"><div className={`float-landmark ${item.reverse ? 'left' : 'right'} ${item.landmarkClass}`}><span className="material-symbols-outlined">{item.landmark}</span></div><h3>{item.title}</h3><p>{item.text}</p><div className="order-line"><strong>{item.price}</strong><button type="button" className="add-order-btn" onClick={() => setOrderBag((bag) => [...bag, item.id])}>Add to Box</button></div></div></article>)}</section><aside className="order-sidebar-proto"><div className="box-card-proto"><h2>Your Box <span className="material-symbols-outlined">luggage</span></h2><div className="pack-grid">{[4,6,12].map((pack) => <button key={pack} className={`pack-btn ${selectedPack === pack ? 'active' : ''}`} type="button" onClick={() => setSelectedPack(pack)}><span>{pack}</span><small>Pack</small></button>)}</div><div className="box-progress"><div className="box-progress-head"><span>Box Progress</span><strong>{displayCount}/{selectedPack} Selected</strong></div><div className="box-progress-bar"><div id="box-progress-fill" style={{ width: `${(displayCount / selectedPack) * 100}%` }}></div><span className="material-symbols-outlined">cookie</span></div></div><div className="box-items">{Object.entries(counts).map(([id, qty]) => <div key={id} className="box-item-row"><div><strong>{orderItems[id].name}{qty > 1 ? ` x${qty}` : ''}</strong><p>{orderItems[id].region}</p></div><button type="button" className="remove-order-btn" onClick={() => setOrderBag((bag) => { const next = [...bag]; next.splice(next.lastIndexOf(id), 1); return next })}>close</button></div>)}</div><div className="box-total"><span>Subtotal</span><strong>${subtotal.toFixed(2)}</strong></div><button className="cta-primary full review-btn" type="button"><span className="review-label">Review Box</span> <span className="material-symbols-outlined">arrow_forward</span></button><div className="social-order-links"><a href={`https://wa.me/?text=${buildOrderMessage()}`} target="_blank" rel="noreferrer">Continue to WhatsApp</a><a href="https://ig.me/m/rihlacookies" target="_blank" rel="noreferrer">Continue to Instagram</a></div></div><div className="red-passport-card"><h4>The Editorial Passport</h4><p>Earn stamps with every regional cookie you try. 10 stamps = 1 Gold Tin Box.</p><a href="#">Learn more</a><span className="material-symbols-outlined big-ticket">confirmation_number</span></div></aside></div></main><Footer /></SiteShell>
 }
 
@@ -240,7 +252,7 @@ function StoryMap() {
 }
 
 function StoryPage() {
-  return <SiteShell active="/story"><main className="story-proto-main"><section className="story-hero-proto page-width"><span className="story-pill">The Editorial Passport</span><h1>The Flavor Map.</h1><p>Every recipe is a stamped entry in our journal, a fusion of heritage techniques and the sensory memories of global travel. Our cookies aren't just baked, they are curated.</p><StoryMap /></section><section className="story-band soft" id="london-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label red">Tea Time Rituals</span><h2>London's Tea Time.</h2><p>Informed by the crisp mornings of Covent Garden and the refined ritual of high tea. We took the classic British shortbread and reimagined it with a heart of macerated strawberries and a delicate clotted cream frosting.</p></div><div className="story-triptych london-triptych"><div className="story-city-card city-london-top"><img src="assets/london-city-1.jpg" alt="London city" /></div><img className="story-cookie-card" src="assets/strawberry.jpg" alt="Strawberry cookie" /><div className="story-city-card city-london-bottom"><img src="assets/london-city-2.jpg" alt="London street" /><span>MARYLEBONE MOOD</span></div></div></div></section><section className="story-band" id="nyc-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label blue">Concrete Dreams</span><h2>The Streets of Manhattan.</h2><p>Inspired by the everything, everywhere energy of the Lower East Side. This is The New Yorker, a heavy oversized cookie featuring dark chocolate chunks, sea salt, and a toasted pretzel crunch that mirrors the city's beautiful chaos.</p></div><div className="story-triptych manhattan-triptych"><div className="story-city-card city-ny-top"><img src="assets/nyc-city-1.jpg" alt="New York city" /></div><img className="story-cookie-card" src="assets/new-yorker.jpg" alt="New Yorker cookie" /><div className="story-city-card city-ny-bottom"><img src="assets/nyc-city-2.jpg" alt="New York skyline" /><span>EMPIRE STATE OF MIND</span></div></div></div></section><section className="story-band gold-wash" id="muscat-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label gold">Desert Warmth</span><h2>The Heart of Muscat.</h2><p>Our origin story. This cookie captures the hospitality of the Omani Majlis. We use premium saffron threads and hand-ground cardamom, folded into a dough that is soft as the dunes of the Sharqiya Sands.</p></div><div className="story-triptych muscat-triptych"><div className="story-city-card city-muscat-top"><img src="assets/muscat-city-1.jpg" alt="Muscat architecture" /></div><img className="story-cookie-card" src="assets/oman.jpg" alt="Majlis Gold cookie" /><div className="story-city-card city-muscat-bottom"><img src="assets/muscat-city-2.jpg" alt="Muscat mood" /><span>GOLDEN MAJLIS</span></div></div></div></section><section className="journey-band page-width"><h4>Our Journey So Far</h4><div className="journey-line"><div className="journey-fill"></div><div className="journey-plane"><span className="material-symbols-outlined">flight</span></div><span className="journey-mark left">Muscat (2018)</span><span className="journey-mark center">London (2021)</span><span className="journey-mark right">New York (Now)</span></div><button className="cta-primary" type="button">Start Your Journey</button></section></main><Footer /></SiteShell>
+  return <SiteShell active="/story"><main className="story-proto-main"><section className="story-hero-proto page-width"><span className="story-pill">The Editorial Passport</span><h1>The Flavor Map.</h1><p>Every recipe is a stamped entry in our journal, a fusion of heritage techniques and the sensory memories of global travel. Our cookies aren't just baked, they are curated.</p><StoryMap /></section><section className="story-band soft" id="london-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label red">Tea Time Rituals</span><h2>London's Tea Time.</h2><p>Informed by the crisp mornings of Covent Garden and the refined ritual of high tea. We took the classic British shortbread and reimagined it with a heart of macerated strawberries and a delicate clotted cream frosting.</p></div><div className="story-triptych london-triptych"><div className="story-city-card city-london-top"><img src={londonCity1Img} alt="London city" /></div><img className="story-cookie-card" src="assets/strawberry.jpg" alt="Strawberry cookie" /><div className="story-city-card city-london-bottom"><img src={londonCity2Img} alt="London street" /><span>MARYLEBONE MOOD</span></div></div></div></section><section className="story-band" id="nyc-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label blue">Concrete Dreams</span><h2>The Streets of Manhattan.</h2><p>Inspired by the everything, everywhere energy of the Lower East Side. This is The New Yorker, a heavy oversized cookie featuring dark chocolate chunks, sea salt, and a toasted pretzel crunch that mirrors the city's beautiful chaos.</p></div><div className="story-triptych manhattan-triptych"><div className="story-city-card city-ny-top"><img src={nycCity1Img} alt="New York city" /></div><img className="story-cookie-card" src="assets/new-yorker.jpg" alt="New Yorker cookie" /><div className="story-city-card city-ny-bottom"><img src={nycCity2Img} alt="New York skyline" /><span>EMPIRE STATE OF MIND</span></div></div></div></section><section className="story-band gold-wash" id="muscat-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label gold">Desert Warmth</span><h2>The Heart of Muscat.</h2><p>Our origin story. This cookie captures the hospitality of the Omani Majlis. We use premium saffron threads and hand-ground cardamom, folded into a dough that is soft as the dunes of the Sharqiya Sands.</p></div><div className="story-triptych muscat-triptych"><div className="story-city-card city-muscat-top"><img src={muscatCity1Img} alt="Muscat architecture" /></div><img className="story-cookie-card" src="assets/oman.jpg" alt="Majlis Gold cookie" /><div className="story-city-card city-muscat-bottom"><img src={muscatCity2Img} alt="Muscat mood" /><span>GOLDEN MAJLIS</span></div></div></div></section><section className="journey-band page-width"><h4>Our Journey So Far</h4><div className="journey-line"><div className="journey-fill"></div><div className="journey-plane"><span className="material-symbols-outlined">flight</span></div><span className="journey-mark left">Muscat (2018)</span><span className="journey-mark center">London (2021)</span><span className="journey-mark right">New York (Now)</span></div><button className="cta-primary" type="button">Start Your Journey</button></section></main><Footer /></SiteShell>
 }
 
 function WorldTourPage() {
