@@ -54,3 +54,68 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
+
+.editorial-atlas-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 36px;
+  background: linear-gradient(180deg, #fbf7f1, #f4ede3);
+  box-shadow: 0 24px 60px rgba(28, 27, 27, 0.08);
+  min-height: 360px;
+}
+
+.editorial-map-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.92;
+}
+
+.editorial-map-surface {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.38), transparent 34%),
+    radial-gradient(circle at 78% 32%, rgba(255,255,255,0.24), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+  pointer-events: none;
+}
+
+.editorial-map-pin {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 4px solid rgba(255,255,255,0.94);
+  box-shadow: 0 10px 24px rgba(28,27,27,0.16);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.editorial-map-pin span {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(255,255,255,0.96);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.editorial-map-pin:hover span,
+.editorial-map-pin:focus-visible span {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

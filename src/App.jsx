@@ -186,7 +186,7 @@ function StoryMap() {
     const node = document.getElementById(target)
     if (node) node.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
-  return <div className="map-panel leaflet-map-wrap branded-map-panel"><MapContainer center={[32, 10]} zoom={2} scrollWheelZoom={false} zoomControl={false} attributionControl={false} className="story-live-map"><TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />{storyLocations.map((location) => <Marker key={location.name} position={location.coords} icon={markerIcon(location.colorClass)} eventHandlers={{ click: () => jumpTo(location.target) }}><Tooltip direction="top" offset={[0, -12]} className="story-map-tooltip">{location.name}</Tooltip></Marker>)}</MapContainer><div className="map-panel-overlay" aria-hidden="true"></div></div>
+  return <div className="map-panel editorial-atlas-panel"><img className="editorial-map-base" src="src/assets/editorial-world-map.svg" alt="Editorial world map" /><div className="editorial-map-surface" aria-hidden="true"></div>{storyLocations.map((location) => <button key={location.name} className={`editorial-map-pin ${location.colorClass}`} type="button" style={{ left: location.name === 'New York' ? '25%' : location.name === 'London' ? '46%' : '61%', top: location.name === 'New York' ? '36%' : location.name === 'London' ? '31%' : '54%' }} onClick={() => jumpTo(location.target)}><span>{location.name}</span></button>)}</div>
 }
 
 function StoryPage() {
