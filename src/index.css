@@ -176,3 +176,35 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+
+.rihla-globe-panel {
+  background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.26), rgba(255,255,255,0.04)), #f5f1ea;
+}
+
+.globe-flag-marker {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.98);
+  box-shadow: 0 12px 28px rgba(28, 27, 27, 0.16);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.globe-flag-marker-emoji {
+  font-size: 20px;
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.globe-flag-marker-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,0.72);
+}

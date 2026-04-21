@@ -66,9 +66,9 @@ const orderItems = {
 }
 
 const storyLocations = [
-  { name: 'New York', lat: 40.7128, lng: -74.006, target: 'nyc-story', color: '#0061a3', flavor: 'The New Yorker', blurb: 'Dark chocolate, sea salt, and toasted pretzel crunch.' },
-  { name: 'London', lat: 51.5074, lng: -0.1278, target: 'london-story', color: '#b6171e', flavor: 'Strawberry Shorty', blurb: 'Strawberries, cream, and a tea-time softness.' },
-  { name: 'Muscat', lat: 23.588, lng: 58.3829, target: 'muscat-story', color: '#7c5800', flavor: 'Majlis Gold', blurb: 'Saffron, cardamom, and warm Omani hospitality.' }
+  { name: 'New York', country: 'USA', flag: '🇺🇸', lat: 40.7128, lng: -74.006, target: 'nyc-story', color: '#0061a3', flavor: 'The New Yorker', blurb: 'Dark chocolate, sea salt, and toasted pretzel crunch.' },
+  { name: 'London', country: 'United Kingdom', flag: '🇬🇧', lat: 51.5074, lng: -0.1278, target: 'london-story', color: '#b6171e', flavor: 'Strawberry Shorty', blurb: 'Strawberries, cream, and a tea-time softness.' },
+  { name: 'Muscat', country: 'Oman', flag: '🇴🇲', lat: 23.588, lng: 58.3829, target: 'muscat-story', color: '#7c5800', flavor: 'Majlis Gold', blurb: 'Saffron, cardamom, and warm Omani hospitality.' }
 ]
 
 
@@ -207,26 +207,31 @@ function StoryMap() {
           width={980}
           height={420}
           backgroundColor="rgba(0,0,0,0)"
-          globeImageUrl="https://unpkg.com/three-globe/example/img/earth-dark.jpg"
+          globeImageUrl="https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
           bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
           showAtmosphere={true}
-          atmosphereColor="#f2e9dc"
-          atmosphereAltitude={0.14}
-          pointsData={storyLocations}
-          pointLat={(d) => d.lat}
-          pointLng={(d) => d.lng}
-          pointColor={(d) => d.color}
-          pointAltitude={0.12}
-          pointRadius={0.55}
-          pointResolution={18}
-          onPointClick={focusCity}
-          onPointHover={(point) => point && setActiveCity(point)}
+          atmosphereColor="#e8efe9"
+          atmosphereAltitude={0.12}
+          htmlElementsData={storyLocations}
+          htmlElement={(d) => {
+            const el = document.createElement('button')
+            el.className = 'globe-flag-marker'
+            el.innerHTML = `<span class="globe-flag-marker-emoji">${d.flag}</span><span class="globe-flag-marker-ring"></span>`
+            el.type = 'button'
+            el.onclick = () => focusCity(d)
+            return el
+          }}
+          htmlLat={(d) => d.lat}
+          htmlLng={(d) => d.lng}
+          htmlElementVisibilityModifier={(el, isVisible) => {
+            el.style.opacity = isVisible ? '1' : '0'
+          }}
         />
       </div>
       <aside className="globe-city-card">
         <p className="globe-city-kicker">Flavor City</p>
         <h3>{activeCity.name}</h3>
-        <strong>{activeCity.flavor}</strong>
+        <strong>{activeCity.country} · {activeCity.flavor}</strong>
         <p>{activeCity.blurb}</p>
         <button className="cta-primary" type="button" onClick={viewFlavor}>View Flavor</button>
       </aside>
