@@ -119,3 +119,60 @@ body {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+
+
+.rihla-globe-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) 320px;
+  gap: 24px;
+  align-items: center;
+}
+
+.rihla-globe-panel {
+  border-radius: 36px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.08), rgba(255,255,255,0.02)), #11100f;
+  box-shadow: 0 24px 60px rgba(28, 27, 27, 0.12);
+}
+
+.rihla-globe-panel canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.globe-city-card {
+  background: rgba(255,255,255,0.96);
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 20px 46px rgba(28, 27, 27, 0.08);
+}
+
+.globe-city-kicker {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.globe-city-card h3 {
+  margin: 0 0 8px;
+  font-size: 34px;
+}
+
+.globe-city-card strong {
+  display: block;
+  margin-bottom: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.globe-city-card p:last-of-type {
+  margin-bottom: 18px;
+}
+
+@media (max-width: 980px) {
+  .rihla-globe-wrap {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,8 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom'
-import L from 'leaflet'
-import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
+import Globe from 'react-globe.gl'
 import './index.css'
 
 const heroConfigs = {
@@ -68,17 +66,11 @@ const orderItems = {
 }
 
 const storyLocations = [
-  { name: 'New York', coords: [40.7128, -74.006], target: 'nyc-story', colorClass: 'map-marker-blue' },
-  { name: 'London', coords: [51.5074, -0.1278], target: 'london-story', colorClass: 'map-marker-red' },
-  { name: 'Muscat', coords: [23.588, 58.3829], target: 'muscat-story', colorClass: 'map-marker-gold' }
+  { name: 'New York', lat: 40.7128, lng: -74.006, target: 'nyc-story', color: '#0061a3', flavor: 'The New Yorker', blurb: 'Dark chocolate, sea salt, and toasted pretzel crunch.' },
+  { name: 'London', lat: 51.5074, lng: -0.1278, target: 'london-story', color: '#b6171e', flavor: 'Strawberry Shorty', blurb: 'Strawberries, cream, and a tea-time softness.' },
+  { name: 'Muscat', lat: 23.588, lng: 58.3829, target: 'muscat-story', color: '#7c5800', flavor: 'Majlis Gold', blurb: 'Saffron, cardamom, and warm Omani hospitality.' }
 ]
 
-const markerIcon = (colorClass) => L.divIcon({
-  className: 'custom-story-marker-shell',
-  html: `<button class="custom-story-marker ${colorClass}" type="button" aria-hidden="true"></button>`,
-  iconSize: [24, 24],
-  iconAnchor: [12, 12]
-})
 
 function SiteShell({ children, active }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
@@ -182,11 +174,64 @@ function OrderPage() {
 }
 
 function StoryMap() {
-  const jumpTo = (target) => {
-    const node = document.getElementById(target)
+  const globeRef = useRef(null)
+  const [activeCity, setActiveCity] = useState(storyLocations[0])
+
+  useEffect(() => {
+    const globe = globeRef.current
+    if (!globe) return
+    globe.controls().autoRotate = true
+    globe.controls().autoRotateSpeed = 0.45
+    globe.pointOfView({ lat: 22, lng: 8, altitude: 2.1 }, 0)
+  }, [])
+
+  const focusCity = (city) => {
+    setActiveCity(city)
+    const globe = globeRef.current
+    if (globe) {
+      globe.controls().autoRotate = false
+      globe.pointOfView({ lat: city.lat, lng: city.lng, altitude: 1.5 }, 1200)
+    }
+  }
+
+  const viewFlavor = () => {
+    const node = document.getElementById(activeCity.target)
     if (node) node.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
-  return <div className="map-panel editorial-atlas-panel"><img className="editorial-map-base" src="src/assets/editorial-world-map.svg" alt="Editorial world map" /><div className="editorial-map-surface" aria-hidden="true"></div>{storyLocations.map((location) => <button key={location.name} className={`editorial-map-pin ${location.colorClass}`} type="button" style={{ left: location.name === 'New York' ? '25%' : location.name === 'London' ? '46%' : '61%', top: location.name === 'New York' ? '36%' : location.name === 'London' ? '31%' : '54%' }} onClick={() => jumpTo(location.target)}><span>{location.name}</span></button>)}</div>
+
+  return (
+    <div className="rihla-globe-wrap">
+      <div className="rihla-globe-panel">
+        <Globe
+          ref={globeRef}
+          width={980}
+          height={420}
+          backgroundColor="rgba(0,0,0,0)"
+          globeImageUrl="https://unpkg.com/three-globe/example/img/earth-dark.jpg"
+          bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
+          showAtmosphere={true}
+          atmosphereColor="#f2e9dc"
+          atmosphereAltitude={0.14}
+          pointsData={storyLocations}
+          pointLat={(d) => d.lat}
+          pointLng={(d) => d.lng}
+          pointColor={(d) => d.color}
+          pointAltitude={0.12}
+          pointRadius={0.55}
+          pointResolution={18}
+          onPointClick={focusCity}
+          onPointHover={(point) => point && setActiveCity(point)}
+        />
+      </div>
+      <aside className="globe-city-card">
+        <p className="globe-city-kicker">Flavor City</p>
+        <h3>{activeCity.name}</h3>
+        <strong>{activeCity.flavor}</strong>
+        <p>{activeCity.blurb}</p>
+        <button className="cta-primary" type="button" onClick={viewFlavor}>View Flavor</button>
+      </aside>
+    </div>
+  )
 }
 
 function StoryPage() {
