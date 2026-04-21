@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom'
+import { HashRouter, Link, NavLink, Route, Routes } from 'react-router-dom'
 import Globe from 'react-globe.gl'
 import './index.css'
 
@@ -243,23 +243,13 @@ function WorldTourPage() {
 }
 
 
-function RouteFallback() {
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const route = params.get('p')
-    if (!route) return
-    window.history.replaceState({}, '', `/Rihla-Cookies/${route}`)
-  }, [])
-  return null
-}
-
 function Footer({ tour = false }) {
   if (tour) return <footer className="tour-footer-proto"><div className="page-width tour-footer-inner"><div className="footer-brand upper">Rihla Cookies</div><div className="tour-footer-links"><a href="#">Shipping Policy</a><a href="#">Global Terms</a><a href="#">Sustainability</a><a href="#">Wholesale</a></div><p>© 2024 Rihla Cookies. Curated by The Nomadic Patisserie.</p></div></footer>
   return <footer className="footer-proto"><div className="page-width footer-inner"><div><div className="footer-brand">Rihla Cookies</div><p>© 2024 Rihla Cookies. The Editorial Passport.</p></div><div className="footer-links"><a href="#">Passport Loyalty</a><a href="#">Instagram</a><a href="#">Shipping Info</a><a href="#">Contact</a></div></div></footer>
 }
 
 function App() {
-  return <BrowserRouter basename="/Rihla-Cookies"><RouteFallback /><Routes><Route path="/" element={<HomePage />} /><Route path="/order" element={<OrderPage />} /><Route path="/story" element={<StoryPage />} /><Route path="/world-tour" element={<WorldTourPage />} /></Routes></BrowserRouter>
+  return <HashRouter><Routes><Route path="/" element={<HomePage />} /><Route path="/order" element={<OrderPage />} /><Route path="/story" element={<StoryPage />} /><Route path="/world-tour" element={<WorldTourPage />} /></Routes></HashRouter>
 }
 
 export default App
