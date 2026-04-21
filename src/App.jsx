@@ -81,7 +81,7 @@ function SiteShell({ children, active }) {
           <button className="mobile-nav-toggle" type="button" aria-expanded={mobileNavOpen} aria-controls="site-mobile-nav" aria-label="Open navigation" onClick={() => setMobileNavOpen((open) => !open)}>
             <span className="material-symbols-outlined">menu</span>
           </button>
-          <div className="brand brand-stacked"><img className="brand-logo-en" src="assets/rihla-logo-en.jpg" alt="Rihla" /><span className="brand-arabic"><img className="brand-logo-ar" src="assets/rihla-logo-ar.jpg" alt="رحلة" /></span></div>
+          <div className="brand brand-stacked"><img className="brand-logo-en" src="assets/rihla-logo-en.png" alt="Rihla" /><span className="brand-arabic"><img className="brand-logo-ar" src="assets/rihla-logo-ar.png" alt="رحلة" /></span></div>
           <div className="nav-links">
             {navLinks.slice(0, 3).map((link) => (
               <NavLink key={link.to} to={link.to} className={({ isActive }) => isActive || active === link.to ? 'active' : ''}>{link.label}</NavLink>
