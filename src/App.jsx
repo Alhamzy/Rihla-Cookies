@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom'
+import L from 'leaflet'
 import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import './index.css'
@@ -67,10 +68,17 @@ const orderItems = {
 }
 
 const storyLocations = [
-  { name: 'New York', coords: [40.7128, -74.006], target: 'nyc-story' },
-  { name: 'London', coords: [51.5074, -0.1278], target: 'london-story' },
-  { name: 'Muscat', coords: [23.588, 58.3829], target: 'muscat-story' }
+  { name: 'New York', coords: [40.7128, -74.006], target: 'nyc-story', colorClass: 'map-marker-blue' },
+  { name: 'London', coords: [51.5074, -0.1278], target: 'london-story', colorClass: 'map-marker-red' },
+  { name: 'Muscat', coords: [23.588, 58.3829], target: 'muscat-story', colorClass: 'map-marker-gold' }
 ]
+
+const markerIcon = (colorClass) => L.divIcon({
+  className: 'custom-story-marker-shell',
+  html: `<button class="custom-story-marker ${colorClass}" type="button" aria-hidden="true"></button>`,
+  iconSize: [24, 24],
+  iconAnchor: [12, 12]
+})
 
 function SiteShell({ children, active }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
@@ -178,7 +186,7 @@ function StoryMap() {
     const node = document.getElementById(target)
     if (node) node.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
-  return <div className="map-panel leaflet-map-wrap"><MapContainer center={[32, 10]} zoom={2} scrollWheelZoom={false} zoomControl={false} attributionControl={false} className="story-live-map"><TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />{storyLocations.map((location) => <Marker key={location.name} position={location.coords} eventHandlers={{ click: () => jumpTo(location.target) }}><Tooltip direction="top" offset={[0, -10]} permanent={false}>{location.name}</Tooltip></Marker>)}</MapContainer></div>
+  return <div className="map-panel leaflet-map-wrap branded-map-panel"><MapContainer center={[32, 10]} zoom={2} scrollWheelZoom={false} zoomControl={false} attributionControl={false} className="story-live-map"><TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />{storyLocations.map((location) => <Marker key={location.name} position={location.coords} icon={markerIcon(location.colorClass)} eventHandlers={{ click: () => jumpTo(location.target) }}><Tooltip direction="top" offset={[0, -12]} className="story-map-tooltip">{location.name}</Tooltip></Marker>)}</MapContainer><div className="map-panel-overlay" aria-hidden="true"></div></div>
 }
 
 function StoryPage() {
