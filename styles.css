@@ -1728,7 +1728,6 @@ button { font: inherit; border: 0; background: none; color: inherit; }
   height: 52px;
   width: auto;
   display: block;
-  mix-blend-mode: multiply;
 }
 
 .brand-arabic {
@@ -1741,7 +1740,6 @@ button { font: inherit; border: 0; background: none; color: inherit; }
   height: 57px;
   width: auto;
   display: block;
-  mix-blend-mode: multiply;
 }
 
 .nav-shell-stacked .nav-links,
