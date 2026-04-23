@@ -176,7 +176,7 @@ function OrderPage() {
   const progressLimit = Math.min(selectedPack, maxCookies)
   const displayCount = Math.min(orderBag.length, progressLimit)
   const progressPercent = progressLimit ? (displayCount / progressLimit) * 100 : 0
-  const cookieSliderStyle = { left: `clamp(0px, calc(${progressPercent}% - 12px), calc(100% - 24px))` }
+  const cookieSliderStyle = { left: `${progressPercent}%` }
   const buildOrderMessage = () => {
     const lines = Object.entries(counts).map(([id, qty]) => {
       const item = orderItems[id]
