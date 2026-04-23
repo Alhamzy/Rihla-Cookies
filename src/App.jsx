@@ -14,6 +14,9 @@ import muscatCity1Img from '../assets/muscat-city-1.jpg'
 import muscatCity2Img from '../assets/muscat-city-2.jpg'
 import rihlaLogoEn from '../assets/rihla-logo-en.png'
 import rihlaLogoAr from '../assets/rihla-logo-ar.png'
+import flagUsaImg from '../assets/flag-usa.png'
+import flagOmanImg from '../assets/flag-oman.png'
+import flagUkImg from '../assets/flag-uk.png'
 
 const heroConfigs = {
   nyc: {
@@ -78,9 +81,9 @@ const orderItems = {
 }
 
 const storyLocations = [
-  { name: 'New York', country: 'USA', flag: '🇺🇸', lat: 40.7128, lng: -74.006, target: 'nyc-story', color: '#0061a3', flavor: 'The New Yorker', blurb: 'Dark chocolate, sea salt, and toasted pretzel crunch.' },
-  { name: 'London', country: 'United Kingdom', flag: '🇬🇧', lat: 51.5074, lng: -0.1278, target: 'london-story', color: '#b6171e', flavor: 'Strawberry Shorty', blurb: 'Strawberries, cream, and a tea-time softness.' },
-  { name: 'Muscat', country: 'Oman', flag: '🇴🇲', lat: 23.588, lng: 58.3829, target: 'muscat-story', color: '#7c5800', flavor: 'Majlis Gold', blurb: 'Saffron, cardamom, and warm Omani hospitality.' }
+  { name: 'New York', country: 'USA', flagImage: flagUsaImg, lat: 40.7128, lng: -74.006, target: 'nyc-story', color: '#0061a3', flavor: 'The New Yorker', blurb: 'Dark chocolate, sea salt, and toasted pretzel crunch.' },
+  { name: 'London', country: 'United Kingdom', flagImage: flagUkImg, lat: 51.5074, lng: -0.1278, target: 'london-story', color: '#b6171e', flavor: 'Strawberry Shorty', blurb: 'Strawberries, cream, and a tea-time softness.' },
+  { name: 'Muscat', country: 'Oman', flagImage: flagOmanImg, lat: 23.588, lng: 58.3829, target: 'muscat-story', color: '#7c5800', flavor: 'Majlis Gold', blurb: 'Saffron, cardamom, and warm Omani hospitality.' }
 ]
 
 
@@ -167,10 +170,12 @@ function HomePage() {
 function OrderPage() {
   const [selectedPack, setSelectedPack] = useState(4)
   const [orderBag, setOrderBag] = useState(['earl-grey', 'saffron-jewel'])
+  const maxCookies = 10
   const counts = orderBag.reduce((acc, id) => ({ ...acc, [id]: (acc[id] || 0) + 1 }), {})
   const subtotal = orderBag.reduce((sum, id) => sum + (orderItems[id]?.price || 0), 0)
-  const currentCount = orderBag.length % selectedPack
-  const displayCount = currentCount === 0 && orderBag.length > 0 ? selectedPack : currentCount
+  const progressLimit = Math.min(selectedPack, maxCookies)
+  const displayCount = Math.min(orderBag.length, progressLimit)
+  const progressPercent = progressLimit ? (displayCount / progressLimit) * 100 : 0
   const buildOrderMessage = () => {
     const lines = Object.entries(counts).map(([id, qty]) => {
       const item = orderItems[id]
@@ -182,7 +187,7 @@ function OrderPage() {
     { id: 'earl-grey', image: strawberryImg, tag: 'London', tagClass: 'red', landmark: 'castle', landmarkClass: 'red', title: 'The Earl Grey Chunk', text: 'Bergamot infused dough with 70% dark chocolate shards and a hint of English lavender.', price: '$4.50' },
     { id: 'big-apple', image: newYorkerImg, tag: 'NYC', tagClass: 'blue', landmark: 'robot', landmarkClass: 'blue', title: 'The Big Apple Levain', text: 'A massive 6oz cookie with toasted walnuts, semi-sweet chips, and a gooey molten center.', price: '$5.50', reverse: true },
     { id: 'saffron-jewel', image: omanImg, tag: 'Muscat', tagClass: 'gold', landmark: 'mosque', landmarkClass: 'gold', title: 'The Saffron Jewel', text: 'Omani saffron, white chocolate, and crushed pistachios finished with local honey drizzle.', price: '$6.00' }
-  ].map((item) => <article key={item.id} className={`order-item-card ${item.reverse ? 'reverse' : ''}`}><div className={`order-item-image ${item.reverse ? 'right' : 'left'}`}><img src={item.image} alt={item.title} /><span className={`region-tag ${item.tagClass}`}>{item.tag}</span></div><div className="order-item-copy"><div className={`float-landmark ${item.reverse ? 'left' : 'right'} ${item.landmarkClass}`}><span className="material-symbols-outlined">{item.landmark}</span></div><h3>{item.title}</h3><p>{item.text}</p><div className="order-line"><strong>{item.price}</strong><button type="button" className="add-order-btn" onClick={() => setOrderBag((bag) => [...bag, item.id])}>Add to Box</button></div></div></article>)}</section><aside className="order-sidebar-proto"><div className="box-card-proto"><h2>Your Box <span className="material-symbols-outlined">luggage</span></h2><div className="pack-grid">{[4,6,12].map((pack) => <button key={pack} className={`pack-btn ${selectedPack === pack ? 'active' : ''}`} type="button" onClick={() => setSelectedPack(pack)}><span>{pack}</span><small>Pack</small></button>)}</div><div className="box-progress"><div className="box-progress-head"><span>Box Progress</span><strong>{displayCount}/{selectedPack} Selected</strong></div><div className="box-progress-bar"><div id="box-progress-fill" style={{ width: `${(displayCount / selectedPack) * 100}%` }}></div><span className="material-symbols-outlined">cookie</span></div></div><div className="box-items">{Object.entries(counts).map(([id, qty]) => <div key={id} className="box-item-row"><div><strong>{orderItems[id].name}{qty > 1 ? ` x${qty}` : ''}</strong><p>{orderItems[id].region}</p></div><button type="button" className="remove-order-btn" onClick={() => setOrderBag((bag) => { const next = [...bag]; next.splice(next.lastIndexOf(id), 1); return next })}>close</button></div>)}</div><div className="box-total"><span>Subtotal</span><strong>${subtotal.toFixed(2)}</strong></div><button className="cta-primary full review-btn" type="button"><span className="review-label">Review Box</span> <span className="material-symbols-outlined">arrow_forward</span></button><div className="social-order-links"><a href={`https://wa.me/?text=${buildOrderMessage()}`} target="_blank" rel="noreferrer">Continue to WhatsApp</a><a href="https://ig.me/m/rihlacookies" target="_blank" rel="noreferrer">Continue to Instagram</a></div></div><div className="red-passport-card"><h4>The Editorial Passport</h4><p>Earn stamps with every regional cookie you try. 10 stamps = 1 Gold Tin Box.</p><a href="#">Learn more</a><span className="material-symbols-outlined big-ticket">confirmation_number</span></div></aside></div></main><Footer /></SiteShell>
+  ].map((item) => <article key={item.id} className={`order-item-card ${item.reverse ? 'reverse' : ''}`}><div className={`order-item-image ${item.reverse ? 'right' : 'left'}`}><img src={item.image} alt={item.title} /><span className={`region-tag ${item.tagClass}`}>{item.tag}</span></div><div className="order-item-copy"><div className={`float-landmark ${item.reverse ? 'left' : 'right'} ${item.landmarkClass}`}><span className="material-symbols-outlined">{item.landmark}</span></div><h3>{item.title}</h3><p>{item.text}</p><div className="order-line"><strong>{item.price}</strong><button type="button" className="add-order-btn" onClick={() => setOrderBag((bag) => bag.length >= maxCookies ? bag : [...bag, item.id])}>Add to Box</button></div></div></article>)}</section><aside className="order-sidebar-proto"><div className="box-card-proto"><h2>Your Box <span className="material-symbols-outlined">luggage</span></h2><div className="pack-grid">{[4,6,12].map((pack) => <button key={pack} className={`pack-btn ${selectedPack === pack ? 'active' : ''}`} type="button" onClick={() => setSelectedPack(pack)}><span>{pack}</span><small>Pack</small></button>)}</div><div className="box-progress"><div className="box-progress-head"><span>Box Progress</span><strong>{displayCount}/{progressLimit} Selected</strong></div><div className="box-progress-bar"><div id="box-progress-fill" style={{ width: `${progressPercent}%` }}></div><span className="material-symbols-outlined box-progress-cookie" style={{ left: `calc(${progressPercent}% - 12px)` }}>cookie</span></div></div><div className="box-items">{Object.entries(counts).map(([id, qty]) => <div key={id} className="box-item-row"><div><strong>{orderItems[id].name}{qty > 1 ? ` x${qty}` : ''}</strong><p>{orderItems[id].region}</p></div><button type="button" className="remove-order-btn" onClick={() => setOrderBag((bag) => { const next = [...bag]; next.splice(next.lastIndexOf(id), 1); return next })}>close</button></div>)}</div><div className="box-total"><span>Subtotal</span><strong>${subtotal.toFixed(2)}</strong></div><button className="cta-primary full review-btn" type="button"><span className="review-label">Review Box</span> <span className="material-symbols-outlined">arrow_forward</span></button><div className="social-order-links"><a href={`https://wa.me/?text=${buildOrderMessage()}`} target="_blank" rel="noreferrer">Continue to WhatsApp</a><a href="https://ig.me/m/rihlacookies" target="_blank" rel="noreferrer">Continue to Instagram</a></div></div><div className="red-passport-card"><h4>The Editorial Passport</h4><p>Earn stamps with every regional cookie you try. 10 stamps = 1 Gold Tin Box.</p><a href="#">Learn more</a><span className="material-symbols-outlined big-ticket">confirmation_number</span></div></aside></div></main><Footer /></SiteShell>
 }
 
 function StoryMap() {
@@ -197,6 +202,11 @@ function StoryMap() {
     globe.pointOfView({ lat: 22, lng: 8, altitude: 2.1 }, 0)
   }, [])
 
+  const jumpToCity = (city) => {
+    const node = document.getElementById(city.target)
+    if (node) node.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   const focusCity = (city) => {
     setActiveCity(city)
     const globe = globeRef.current
@@ -204,11 +214,7 @@ function StoryMap() {
       globe.controls().autoRotate = false
       globe.pointOfView({ lat: city.lat, lng: city.lng, altitude: 1.5 }, 1200)
     }
-  }
-
-  const viewFlavor = () => {
-    const node = document.getElementById(activeCity.target)
-    if (node) node.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    window.requestAnimationFrame(() => jumpToCity(city))
   }
 
   return (
@@ -217,46 +223,55 @@ function StoryMap() {
         <Globe
           ref={globeRef}
           width={980}
-          height={420}
+          height={980}
           backgroundColor="rgba(0,0,0,0)"
           globeImageUrl="https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
           bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
           showAtmosphere={true}
           atmosphereColor="#e8efe9"
           atmosphereAltitude={0.12}
+          pointsData={storyLocations}
+          pointLat={(d) => d.lat}
+          pointLng={(d) => d.lng}
+          pointColor={() => 'rgba(0,0,0,0.001)'}
+          pointAltitude={0.01}
+          pointRadius={0.65}
+          pointResolution={18}
+          pointsMerge={false}
+          onPointClick={(point) => focusCity(point)}
           htmlElementsData={storyLocations}
           htmlElement={(d) => {
             const el = document.createElement('button')
             el.className = 'globe-flag-marker'
-            el.innerHTML = `<span class="globe-flag-marker-emoji">${d.flag}</span><span class="globe-flag-marker-ring"></span>`
             el.type = 'button'
-            el.onclick = () => focusCity(d)
+            el.setAttribute('aria-label', `${d.name} - ${d.flavor}`)
+            el.innerHTML = `<span class="globe-flag-marker-core"><img class="globe-flag-marker-image" src="${d.flagImage}" alt="" /></span>`
+            el.onclick = (event) => {
+              event.preventDefault()
+              event.stopPropagation()
+              focusCity(d)
+            }
             return el
           }}
           htmlLat={(d) => d.lat}
           htmlLng={(d) => d.lng}
+          htmlAltitude={() => 0}
           htmlElementVisibilityModifier={(el, isVisible) => {
             el.style.opacity = isVisible ? '1' : '0'
           }}
         />
       </div>
-      <aside className="globe-city-card">
-        <p className="globe-city-kicker">Flavor City</p>
-        <h3>{activeCity.name}</h3>
-        <strong>{activeCity.country} · {activeCity.flavor}</strong>
-        <p>{activeCity.blurb}</p>
-        <button className="cta-primary" type="button" onClick={viewFlavor}>View Flavor</button>
-      </aside>
+      
     </div>
   )
 }
 
 function StoryPage() {
-  return <SiteShell active="/story"><main className="story-proto-main"><section className="story-hero-proto page-width"><span className="story-pill">The Editorial Passport</span><h1>The Flavor Map.</h1><p>Every recipe is a stamped entry in our journal, a fusion of heritage techniques and the sensory memories of global travel. Our cookies aren't just baked, they are curated.</p><StoryMap /></section><section className="story-band soft" id="london-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label red">Tea Time Rituals</span><h2>London's Tea Time.</h2><p>Informed by the crisp mornings of Covent Garden and the refined ritual of high tea. We took the classic British shortbread and reimagined it with a heart of macerated strawberries and a delicate clotted cream frosting.</p></div><div className="story-triptych london-triptych"><div className="story-city-card city-london-top"><img src={londonCity1Img} alt="London city" /></div><img className="story-cookie-card" src="assets/strawberry.jpg" alt="Strawberry cookie" /><div className="story-city-card city-london-bottom"><img src={londonCity2Img} alt="London street" /><span>MARYLEBONE MOOD</span></div></div></div></section><section className="story-band" id="nyc-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label blue">Concrete Dreams</span><h2>The Streets of Manhattan.</h2><p>Inspired by the everything, everywhere energy of the Lower East Side. This is The New Yorker, a heavy oversized cookie featuring dark chocolate chunks, sea salt, and a toasted pretzel crunch that mirrors the city's beautiful chaos.</p></div><div className="story-triptych manhattan-triptych"><div className="story-city-card city-ny-top"><img src={nycCity1Img} alt="New York city" /></div><img className="story-cookie-card" src="assets/new-yorker.jpg" alt="New Yorker cookie" /><div className="story-city-card city-ny-bottom"><img src={nycCity2Img} alt="New York skyline" /><span>EMPIRE STATE OF MIND</span></div></div></div></section><section className="story-band gold-wash" id="muscat-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label gold">Desert Warmth</span><h2>The Heart of Muscat.</h2><p>Our origin story. This cookie captures the hospitality of the Omani Majlis. We use premium saffron threads and hand-ground cardamom, folded into a dough that is soft as the dunes of the Sharqiya Sands.</p></div><div className="story-triptych muscat-triptych"><div className="story-city-card city-muscat-top"><img src={muscatCity1Img} alt="Muscat architecture" /></div><img className="story-cookie-card" src="assets/oman.jpg" alt="Majlis Gold cookie" /><div className="story-city-card city-muscat-bottom"><img src={muscatCity2Img} alt="Muscat mood" /><span>GOLDEN MAJLIS</span></div></div></div></section><section className="journey-band page-width"><h4>Our Journey So Far</h4><div className="journey-line"><div className="journey-fill"></div><div className="journey-plane"><span className="material-symbols-outlined">flight</span></div><span className="journey-mark left">Muscat (2018)</span><span className="journey-mark center">London (2021)</span><span className="journey-mark right">New York (Now)</span></div><button className="cta-primary" type="button">Start Your Journey</button></section></main><Footer /></SiteShell>
+  return <SiteShell active="/story"><main className="story-proto-main"><section className="story-hero-proto page-width"><span className="story-pill">The Editorial Passport</span><h1>The Flavor Map.</h1><p>Every recipe is a stamped entry in our journal, a fusion of heritage techniques and the sensory memories of global travel. Our cookies aren't just baked, they are curated.</p><StoryMap /></section><section className="story-band soft" id="london-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label red">Tea Time Rituals</span><h2>London's Tea Time.</h2><p>Informed by the crisp mornings of Covent Garden and the refined ritual of high tea. We took the classic British shortbread and reimagined it with a heart of macerated strawberries and a delicate clotted cream frosting.</p></div><div className="story-triptych london-triptych"><div className="story-city-card city-london-top"><img src={londonCity1Img} alt="London city" /></div><img className="story-cookie-card" src={strawberryImg} alt="Strawberry cookie" /><div className="story-city-card city-london-bottom"><img src={londonCity2Img} alt="London street" /><span>MARYLEBONE MOOD</span></div></div></div></section><section className="story-band" id="nyc-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label blue">Concrete Dreams</span><h2>The Streets of Manhattan.</h2><p>Inspired by the everything, everywhere energy of the Lower East Side. This is The New Yorker, a heavy oversized cookie featuring dark chocolate chunks, sea salt, and a toasted pretzel crunch that mirrors the city's beautiful chaos.</p></div><div className="story-triptych manhattan-triptych"><div className="story-city-card city-ny-top"><img src={nycCity1Img} alt="New York city" /></div><img className="story-cookie-card" src={newYorkerImg} alt="New Yorker cookie" /><div className="story-city-card city-ny-bottom"><img src={nycCity2Img} alt="New York skyline" /><span>EMPIRE STATE OF MIND</span></div></div></div></section><section className="story-band gold-wash" id="muscat-story"><div className="page-width story-editorial-grid"><div className="story-copy"><span className="mini-label gold">Desert Warmth</span><h2>The Heart of Muscat.</h2><p>Our origin story. This cookie captures the hospitality of the Omani Majlis. We use premium saffron threads and hand-ground cardamom, folded into a dough that is soft as the dunes of the Sharqiya Sands.</p></div><div className="story-triptych muscat-triptych"><div className="story-city-card city-muscat-top"><img src={muscatCity1Img} alt="Muscat architecture" /></div><img className="story-cookie-card" src={omanImg} alt="Majlis Gold cookie" /><div className="story-city-card city-muscat-bottom"><img src={muscatCity2Img} alt="Muscat mood" /><span>GOLDEN MAJLIS</span></div></div></div></section><section className="journey-band page-width"><h4>Our Journey So Far</h4><div className="journey-line"><div className="journey-fill"></div><div className="journey-plane"><span className="material-symbols-outlined">flight</span></div><span className="journey-mark left">Muscat (2018)</span><span className="journey-mark center">London (2021)</span><span className="journey-mark right">New York (Now)</span></div><button className="cta-primary" type="button">Start Your Journey</button></section></main><Footer /></SiteShell>
 }
 
 function WorldTourPage() {
-  return <SiteShell active="/world-tour"><main className="tour-proto-main"><section className="tour-hero-proto page-width wide-pad"><div className="tour-copy-proto"><span>Departing Weekly</span><h1>The World Tour <em>Edition</em></h1><p>Every week is a new global flight. We curate artisanal cookies inspired by the world's most iconic flavors, bringing the terminal to your table.</p><button className="cta-primary" type="button">Board the Flight</button></div><div className="tour-suitcase-wrap"><div className="tour-suitcase-glow"></div><div className="tour-suitcase-image"></div></div></section><section className="manifest-band"><div className="page-width"><div className="manifest-head"><div><h2>Flight Manifest</h2><p>Batch No. 402 — Current Destinations</p></div><div className="manifest-status"><span className="material-symbols-outlined">flight_takeoff</span><span>Status: In Transit</span></div></div><div className="manifest-grid-proto"><article><div className="manifest-top"><span className="region-chip region-red light">London</span><span className="material-symbols-outlined red">castle</span></div><img src="assets/strawberry.jpg" alt="London cookie" /><h3>The Earl Grey Shortbread</h3><p>Bergamot-infused dough with a touch of Cornish sea salt and a lemon glaze finish.</p></article><article><div className="manifest-top"><span className="region-chip region-blue light">New York</span><span className="material-symbols-outlined blue">robot</span></div><img src="assets/new-yorker.jpg" alt="New York cookie" /><h3>The Manhattan Chunk</h3><p>A heavy-weight walnut and dark chocolate masterpiece inspired by Levain's legendary bakes.</p></article><article className="bordered-gold"><div className="manifest-top"><span className="region-chip region-gold light">Muscat</span><span className="material-symbols-outlined gold">sailing</span></div><img src="assets/oman.jpg" alt="Muscat cookie" /><h3>The Saffron Halwa</h3><p>Omani dates, toasted sesame, and a heart of saffron-infused honey. Our signature heritage bake.</p></article></div></div></section><section className="passport-reward-band page-width"><div className="passport-book-wrap"><div className="passport-book"><div className="passport-book-inner"><div className="passport-seal"><span className="material-symbols-outlined">public</span></div><h4>Passport of Flavor</h4><div className="passport-dot-grid"><span className="filled"></span><span className="filled"></span><span></span><span></span><span></span><span></span></div><p>Holder: Rihla Voyager</p></div><div className="gold-reward-box"><span className="material-symbols-outlined">inventory_2</span><strong>The Gold Tin Box Reward</strong></div></div></div><div className="passport-reward-copy"><span className="mini-label gold">Loyalty Miles</span><h2>Earn Your Stamps, Claim the Gold.</h2><p>Every World Tour box comes with a physical passport stamp. Collect 10 stamps from different flights to unlock our limited edition Gold Tin Box.</p><ul><li><span className="material-symbols-outlined">check</span>1 Box = 1 Official Stamp</li><li><span className="material-symbols-outlined">check</span>Valid on all International Flavors</li><li><span className="material-symbols-outlined">check</span>Exclusive Voyager Status at 10 Stamps</li></ul></div></section><section className="next-gate-band"><div className="page-width"><div className="next-gate-head"><h2>Next Week's Gate</h2><p>Estimated Departure: Monday, 09:00 AM</p></div><div className="next-gate-grid"><div>Paris</div><div>Tokyo</div><div>Rome</div><div>Secret Stop</div></div></div></section><section className="takeoff-band page-width"><div className="takeoff-icon"><span className="material-symbols-outlined">confirmation_number</span></div><h2>Ready for Takeoff?</h2><p>Limited batches per week. Once the flight is closed, these flavors return to the archive. Don't let your tastebuds miss the connection.</p><div className="hero-cta-row"><button className="cta-primary" type="button">Board the Flight</button><button className="cta-secondary" type="button">View Schedule</button></div></section></main><Footer tour /></SiteShell>
+  return <SiteShell active="/world-tour"><main className="tour-proto-main"><section className="tour-hero-proto page-width wide-pad"><div className="tour-copy-proto"><span>Departing Weekly</span><h1>The World Tour <em>Edition</em></h1><p>Every week is a new global flight. We curate artisanal cookies inspired by the world's most iconic flavors, bringing the terminal to your table.</p><button className="cta-primary" type="button">Board the Flight</button></div><div className="tour-suitcase-wrap"><div className="tour-suitcase-glow"></div><div className="tour-suitcase-image"></div></div></section><section className="manifest-band"><div className="page-width"><div className="manifest-head"><div><h2>Flight Manifest</h2><p>Batch No. 402 — Current Destinations</p></div><div className="manifest-status"><span className="material-symbols-outlined">flight_takeoff</span><span>Status: In Transit</span></div></div><div className="manifest-grid-proto"><article><div className="manifest-top"><span className="region-chip region-red light">London</span><span className="material-symbols-outlined red">castle</span></div><img src={strawberryImg} alt="London cookie" /><h3>The Earl Grey Shortbread</h3><p>Bergamot-infused dough with a touch of Cornish sea salt and a lemon glaze finish.</p></article><article><div className="manifest-top"><span className="region-chip region-blue light">New York</span><span className="material-symbols-outlined blue">robot</span></div><img src={newYorkerImg} alt="New York cookie" /><h3>The Manhattan Chunk</h3><p>A heavy-weight walnut and dark chocolate masterpiece inspired by Levain's legendary bakes.</p></article><article className="bordered-gold"><div className="manifest-top"><span className="region-chip region-gold light">Muscat</span><span className="material-symbols-outlined gold">sailing</span></div><img src={omanImg} alt="Muscat cookie" /><h3>The Saffron Halwa</h3><p>Omani dates, toasted sesame, and a heart of saffron-infused honey. Our signature heritage bake.</p></article></div></div></section><section className="passport-reward-band page-width"><div className="passport-book-wrap"><div className="passport-book"><div className="passport-book-inner"><div className="passport-seal"><span className="material-symbols-outlined">public</span></div><h4>Passport of Flavor</h4><div className="passport-dot-grid"><span className="filled"></span><span className="filled"></span><span></span><span></span><span></span><span></span></div><p>Holder: Rihla Voyager</p></div><div className="gold-reward-box"><span className="material-symbols-outlined">inventory_2</span><strong>The Gold Tin Box Reward</strong></div></div></div><div className="passport-reward-copy"><span className="mini-label gold">Loyalty Miles</span><h2>Earn Your Stamps, Claim the Gold.</h2><p>Every World Tour box comes with a physical passport stamp. Collect 10 stamps from different flights to unlock our limited edition Gold Tin Box.</p><ul><li><span className="material-symbols-outlined">check</span>1 Box = 1 Official Stamp</li><li><span className="material-symbols-outlined">check</span>Valid on all International Flavors</li><li><span className="material-symbols-outlined">check</span>Exclusive Voyager Status at 10 Stamps</li></ul></div></section><section className="next-gate-band"><div className="page-width"><div className="next-gate-head"><h2>Next Week's Gate</h2><p>Estimated Departure: Monday, 09:00 AM</p></div><div className="next-gate-grid"><div>Paris</div><div>Tokyo</div><div>Rome</div><div>Secret Stop</div></div></div></section><section className="takeoff-band page-width"><div className="takeoff-icon"><span className="material-symbols-outlined">confirmation_number</span></div><h2>Ready for Takeoff?</h2><p>Limited batches per week. Once the flight is closed, these flavors return to the archive. Don't let your tastebuds miss the connection.</p><div className="hero-cta-row"><button className="cta-primary" type="button">Board the Flight</button><button className="cta-secondary" type="button">View Schedule</button></div></section></main><Footer tour /></SiteShell>
 }
 
 
