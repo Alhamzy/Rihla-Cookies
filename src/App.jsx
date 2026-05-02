@@ -193,14 +193,31 @@ function OrderPage() {
 
 function StoryMap() {
   const globeRef = useRef(null)
+  const panelRef = useRef(null)
   const [activeCity, setActiveCity] = useState(storyLocations[0])
+  const [globeSize, setGlobeSize] = useState({ width: 1100, height: 900 })
 
   useEffect(() => {
     const globe = globeRef.current
     if (!globe) return
     globe.controls().autoRotate = true
     globe.controls().autoRotateSpeed = 0.45
-    globe.pointOfView({ lat: 22, lng: 8, altitude: 2.1 }, 0)
+    globe.camera().fov = 20
+    globe.camera().updateProjectionMatrix()
+    globe.pointOfView({ lat: 22, lng: 8, altitude: 2.35 }, 0)
+  }, [])
+
+  useEffect(() => {
+    const measure = () => {
+      const width = panelRef.current?.clientWidth || 1100
+      const safeWidth = Math.max(720, Math.min(1320, Math.round(width)))
+      const safeHeight = Math.round(safeWidth * 0.82)
+      setGlobeSize({ width: safeWidth, height: safeHeight })
+    }
+
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
   }, [])
 
   const jumpToCity = (city) => {
@@ -213,18 +230,18 @@ function StoryMap() {
     const globe = globeRef.current
     if (globe) {
       globe.controls().autoRotate = false
-      globe.pointOfView({ lat: city.lat, lng: city.lng, altitude: 1.5 }, 1200)
+      globe.pointOfView({ lat: city.lat, lng: city.lng, altitude: 1.95 }, 1200)
     }
     window.requestAnimationFrame(() => jumpToCity(city))
   }
 
   return (
     <div className="rihla-globe-wrap">
-      <div className="rihla-globe-panel">
+      <div className="rihla-globe-panel" ref={panelRef}>
         <Globe
           ref={globeRef}
-          width={980}
-          height={980}
+          width={globeSize.width}
+          height={globeSize.height}
           backgroundColor="rgba(0,0,0,0)"
           globeImageUrl="https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
           bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
